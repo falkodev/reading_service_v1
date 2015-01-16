@@ -1,0 +1,27 @@
+#Empecher le listage des fichiers
+Options -Indexes
+
+# Turn on URL rewriting
+RewriteEngine On
+
+# Installation directory
+RewriteBase /index.php
+
+# Protect application and system files from being viewed
+RewriteRule ^(application|modules|system) - [F,L]
+
+# Allow any files or directories that exist to be displayed directly
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Rewrite all other URLs to index.php/
+#RewriteRule .* index.php/$0 [PT,L]
+RewriteRule .* index.php
+
+
+ErrorDocument 400 /error.php
+ErrorDocument 401 /error.php
+ErrorDocument 403 /error.php
+ErrorDocument 404 /error.php
+ErrorDocument 500 /error.php
+

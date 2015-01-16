@@ -1,0 +1,7 @@
+AuthName "Mot de passe requis"
+AuthGroupFile /dev/null
+AuthType Basic
+AuthUserFile "/homez.208/jwreadinhe/passfich"
+<Limit GET POST>
+Require valid-user
+</Limit>
