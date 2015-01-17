@@ -37,6 +37,7 @@ if (isset($_POST['loginInput']) && isset($_POST['pwdInput'])){
             $_SESSION['time_utc'] = $row[16];
             $_SESSION['time_zone'] = $row[17];
             $_SESSION['email'] = $_POST['loginInput'];  
+            
 			//recuperation de la derniere ligne de modif decalée (s'il en existe au moins une)
    //          $query = 'SELECT mod_cycle_first_day,mod_day_1,mod_day_2,mod_day_3,mod_day_4,mod_day_5,mod_day_6,mod_day_7 from modification where user_id = '.$_SESSION['id'].' order by mod_id desc';
    //          $result = mysqli_query($mysqli, $query);

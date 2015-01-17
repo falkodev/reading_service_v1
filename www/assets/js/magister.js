@@ -12,6 +12,7 @@ var section_show_time = 800;
 
 var password;
 var lang;
+var size;
 
 // jQuery stuff
 jQuery(document).ready(function($) {
@@ -24,34 +25,38 @@ jQuery(document).ready(function($) {
         else { size = 960; }
 
         $('#map-continents').cssMap({
-                'size' : size,
-                'onClick' : function(e){
-                    //var id = e.attr("class");
-                    //alert(id);
-                    $(".select-utc").find('option').removeAttr("selected"); //annulation sélection utc
-                    //$('#select-phrase').empty();
-                },
-                'onLoad' : function(e){
-                    $timezone = $('#hiddenTimeZone').val();
-                    $('.' + $timezone + ' map').removeClass('active-region');
-                },
-                agentsListId : '#addresses'
-            });
+            'size' : size,
+            'onClick' : function(e){
+                //var id = e.attr("class");
+                //alert(id);
+                $(".select-utc").find('option').removeAttr("selected"); //annulation sélection utc
+                //$('#select-phrase').empty();
+            },
+            // 'onLoad' : function(e){
+            //     $timezone = $('#hiddenTimeZone').val();
+            //     $('.' + $timezone + ' map').removeClass('active-region');
+            //     var element = $('.' + $timezone);
+            //     var myClasses = element.classList;
+            //     alert(element + " " + myClasses.length + " " + myClasses[0]);
+            // },
+            agentsListId : '#addresses'
+        });
 
         $('#account-map-continents').cssMap({
-                'size' : size,
-                'onClick' : function(e){
-                    //var id = e.attr("class");
-                    //alert(id);
-                    $(".select-utc").find('option').removeAttr("selected"); //annulation sélection utc
-                    //$('#select-phrase').empty();
-                },
-                'onLoad' : function(e){
-                    $timezone = $('#hiddenTimeZone').val();
-                    $('.' + $timezone + ' account-map').addClass('active-region');
-                },
-                agentsListId : '#account-addresses'
-            });
+            'size' : size,
+            'onClick' : function(e){
+                //var id = e.attr("class");
+                //alert(id);
+                $(".select-utc").find('option').removeAttr("selected"); //annulation sélection utc
+                //$('#select-phrase').empty();
+            },
+            // 'onLoad' : function(e){
+                // var element = $('.' + $timezone + ' account-map');
+                // var myClasses = element.classList;
+                // alert(element + " " + myClasses.length + " " + myClasses[0]);
+            // },
+            agentsListId : '#account-addresses'
+        });
     }
 
 	lang = $('html').attr('lang');
@@ -377,7 +382,7 @@ jQuery(document).ready(function($) {
                 if (msg == '1')
                 {
 					$('#msg').val(msg);
-					$('#loginForm').submit();
+                    $('#loginForm').submit();
                 }
                 else if (msg == '0')
                 {
@@ -574,8 +579,12 @@ jQuery(document).ready(function($) {
             // $('#loader').show();
             // $('#accountForm').submit();
             $('#accountSecond').hide();
+            
+            var timezone = $('#hiddenTimeZone').val(); 
+            $('#' + timezone + '-li').parent().addClass('active-region'); 
+            // var classe = $('#' + timezone + '-li').parent().attr('class'); 
+            // alert('timezone:' + timezone + ' /// li parent:' + classe);
             $('#accountThird').show();
-
         }
     });
 
