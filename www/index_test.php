@@ -69,7 +69,8 @@ echo '<style type="text/css">#home{display:block;}</style>';
     <script src="assets/js/bootstrap.min.js"></script>
     <script src="assets/js/modernizr.custom.72241.js"></script>
     <!-- World map js-->
-    <script type="text/javascript" src="http://cssmapsplugin.com/4/jquery.cssmap.js"></script> 
+    <!-- <script type="text/javascript" src="http://cssmapsplugin.com/4/jquery.cssmap.js"></script>  -->
+    <script src="assets/js/jquery.cssmap.js"></script>
     <!-- Custom template scripts -->
     <script src="assets/js/magister.js"></script>
 
@@ -359,7 +360,7 @@ echo '<style type="text/css">#home{display:block;}</style>';
                 <div class="col-sm-12 text-center">
                     <br><?=__('subscribe_time_choice')?>
                     <div id="tip2" class="validate tip" style="margin: 5px -12px;"><span class="closeTip"><i class="fa fa-times"></i></span><?=__('subscribe_tip_2')?></div>
-                    <div id="map-continents">
+                    <div class="worldmap" id="map-continents">
                      <ul class="continents">
                       <li class="c1"><a href="#africa"><?=__('world_map_africa')?></a></li>
                       <li class="c2"><a href="#asia"><?=__('world_map_asia')?></a></li>
@@ -693,7 +694,7 @@ echo '<style type="text/css">#home{display:block;}</style>';
                 <div class="col-sm-12 text-center">
                     <br><?=__('subscribe_time_choice')?>
                     <div id="tipAccount" class="validate tip" style="margin: 5px -12px;"><span class="closeTip"></span><?=__('account_tip_1').$_SESSION['time_displayed'].__('account_tip_2')?>UTC<?=$_SESSION['time_utc'].__('account_tip_3')?> (<?=$_SESSION['time_cities']?>)<br><br><?=__('account_tip_4')?></div>
-                    <div id="account-map-continents"> 
+                    <div class="worldmap" id="account-map-continents"> 
                      <ul class="continents">
                       <li class="c1"><a href="#africa"><?=__('world_map_africa')?></a></li>
                       <li class="c2"><a href="#asia"><?=__('world_map_asia')?></a></li>

@@ -31,6 +31,10 @@ jQuery(document).ready(function($) {
                     $(".select-utc").find('option').removeAttr("selected"); //annulation sélection utc
                     //$('#select-phrase').empty();
                 },
+                // 'onLoad' : function(e){
+                //     $timezone = $('#hiddenTimeZone').val();
+                //     $('.' + $timezone).removeClass('active-region');
+                // },
                 agentsListId : '#addresses'
             });
 
@@ -197,7 +201,7 @@ jQuery(document).ready(function($) {
                 $("#formValidate").empty();
                 $(".tip").show();
 
-                $("input[type=checkbox]").each(
+                $("input[type=checkbox].subscribeChk").each(
                     function() {
                         if($(this).is(":checked")){
                             var id = $(this).attr("id");
@@ -454,7 +458,7 @@ jQuery(document).ready(function($) {
                 $("input[type=radio]").hide();
                 $("#formAccountValidate").empty();
 
-                $("input[type=checkbox]").each(
+                $("input[type=checkbox].accountSwitch").each(
                         function() {
                             $(this).prop('checked', false);
                             if (this.id == "toggleAccountDailyText")

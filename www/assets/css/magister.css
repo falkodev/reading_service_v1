@@ -804,10 +804,10 @@ a:hover, a:active { color:#fff; text-decoration: underline; }
 	display:none;
 }
 
-#map-continents {
+.worldmap {
 	left: 0px;
 }
 
 @media (min-width: 767px) {
-  #map-continents { left: -100px; }
+  .worldmap { left: -100px; }
 }
