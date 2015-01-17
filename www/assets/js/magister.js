@@ -31,10 +31,10 @@ jQuery(document).ready(function($) {
                     $(".select-utc").find('option').removeAttr("selected"); //annulation sélection utc
                     //$('#select-phrase').empty();
                 },
-                // 'onLoad' : function(e){
-                //     $timezone = $('#hiddenTimeZone').val();
-                //     $('.' + $timezone).removeClass('active-region');
-                // },
+                'onLoad' : function(e){
+                    $timezone = $('#hiddenTimeZone').val();
+                    $('.' + $timezone + ' map').removeClass('active-region');
+                },
                 agentsListId : '#addresses'
             });
 
@@ -48,7 +48,7 @@ jQuery(document).ready(function($) {
                 },
                 'onLoad' : function(e){
                     $timezone = $('#hiddenTimeZone').val();
-                    $('.' + $timezone).addClass('active-region');
+                    $('.' + $timezone + ' account-map').addClass('active-region');
                 },
                 agentsListId : '#account-addresses'
             });

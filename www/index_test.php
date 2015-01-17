@@ -69,8 +69,8 @@ echo '<style type="text/css">#home{display:block;}</style>';
     <script src="assets/js/bootstrap.min.js"></script>
     <script src="assets/js/modernizr.custom.72241.js"></script>
     <!-- World map js-->
-    <!-- <script type="text/javascript" src="http://cssmapsplugin.com/4/jquery.cssmap.js"></script>  -->
-    <script src="assets/js/jquery.cssmap.js"></script>
+    <script type="text/javascript" src="http://cssmapsplugin.com/4/jquery.cssmap.js"></script> 
+    <!-- // <script src="assets/js/jquery.cssmap.js"></script> -->
     <!-- Custom template scripts -->
     <script src="assets/js/magister.js"></script>
 
@@ -362,12 +362,12 @@ echo '<style type="text/css">#home{display:block;}</style>';
                     <div id="tip2" class="validate tip" style="margin: 5px -12px;"><span class="closeTip"><i class="fa fa-times"></i></span><?=__('subscribe_tip_2')?></div>
                     <div class="worldmap" id="map-continents">
                      <ul class="continents">
-                      <li class="c1"><a href="#africa"><?=__('world_map_africa')?></a></li>
-                      <li class="c2"><a href="#asia"><?=__('world_map_asia')?></a></li>
-                      <li class="c3"><a href="#australia-and-southern-pacific"><?=__('world_map_australia')?></a></li>
-                      <li class="c4"><a href="#europe"><?=__('world_map_europe')?></a></li>
-                      <li class="c5"><a href="#north-america"><?=__('world_map_north_america')?></a></li>
-                      <li class="c6"><a href="#south-america"><?=__('world_map_south_america')?></a></li>
+                      <li class="c1 map"><a href="#africa"><?=__('world_map_africa')?></a></li>
+                      <li class="c2 map"><a href="#asia"><?=__('world_map_asia')?></a></li>
+                      <li class="c3 map"><a href="#australia-and-southern-pacific"><?=__('world_map_australia')?></a></li>
+                      <li class="c4 map"><a href="#europe"><?=__('world_map_europe')?></a></li>
+                      <li class="c5 map"><a href="#north-america"><?=__('world_map_north_america')?></a></li>
+                      <li class="c6 map"><a href="#south-america"><?=__('world_map_south_america')?></a></li>
                      </ul>
                     </div>
                     <div id="addresses">
@@ -696,12 +696,12 @@ echo '<style type="text/css">#home{display:block;}</style>';
                     <div id="tipAccount" class="validate tip" style="margin: 5px -12px;"><span class="closeTip"></span><?=__('account_tip_1').$_SESSION['time_displayed'].__('account_tip_2')?>UTC<?=$_SESSION['time_utc'].__('account_tip_3')?> (<?=$_SESSION['time_cities']?>)<br><br><?=__('account_tip_4')?></div>
                     <div class="worldmap" id="account-map-continents"> 
                      <ul class="continents">
-                      <li class="c1"><a href="#africa"><?=__('world_map_africa')?></a></li>
-                      <li class="c2"><a href="#asia"><?=__('world_map_asia')?></a></li>
-                      <li class="c3"><a href="#australia-and-southern-pacific"><?=__('world_map_australia')?></a></li>
-                      <li class="c4"><a href="#europe"><?=__('world_map_europe')?></a></li>
-                      <li class="c5"><a href="#north-america"><?=__('world_map_north_america')?></a></li>
-                      <li class="c6"><a href="#south-america"><?=__('world_map_south_america')?></a></li>
+                      <li class="c1 account-map"><a href="#africa"><?=__('world_map_africa')?></a></li>
+                      <li class="c2 account-map"><a href="#asia"><?=__('world_map_asia')?></a></li>
+                      <li class="c3 account-map"><a href="#australia-and-southern-pacific"><?=__('world_map_australia')?></a></li>
+                      <li class="c4 account-map"><a href="#europe"><?=__('world_map_europe')?></a></li>
+                      <li class="c5 account-map"><a href="#north-america"><?=__('world_map_north_america')?></a></li>
+                      <li class="c6 account-map"><a href="#south-america"><?=__('world_map_south_america')?></a></li>
                      </ul>
                     </div>
                     <div id="account-addresses"> 
