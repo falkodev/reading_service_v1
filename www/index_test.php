@@ -346,14 +346,16 @@ echo '<style type="text/css">#home{display:block;}</style>';
                 <div class="row">
                     <div class="col-sm-4">
     					<div class="subscribeBack">
-    						<div class="list"><input type="radio" id="radioLangReading1" class="checkList radioLangReading" name="radiosLangReading" value="fr" checked><label class="labelList" for="radioLangReading1" title="<?=__('lang_fr')?>"><?=__('lang_fr')?><span class="led"></span></label></div><br>
-    						<div class="list"><input type="radio" id="radioLangReading2" class="checkList radioLangReading" name="radiosLangReading" value="en"><label class="labelList" for="radioLangReading2" title="<?=__('lang_en')?>"><?=__('lang_en')?><span class="led"></span></label></div>
+    						<div class="list"><input type="radio" id="radioLangReadingFr" class="checkList radioLangReading" name="radiosLangReading" value="fr" checked><label class="labelList" for="radioLangReadingFr" title="<?=__('lang_fr')?>"><?=__('lang_fr')?><span class="led"></span></label></div><br>
+    						<div class="list"><input type="radio" id="radioLangReadingEn" class="checkList radioLangReading" name="radiosLangReading" value="en"><label class="labelList" for="radioLangReadingEn" title="<?=__('lang_en')?>"><?=__('lang_en')?><span class="led"></span></label></div><br>
+                            <div class="list"><input type="radio" id="radioLangReadingRo" class="checkList radioLangReading" name="radiosLangReading" value="ro"><label class="labelList" for="radioLangReadingRo" title="<?=__('lang_ro')?>"><?=__('lang_ro')?><span class="led"></span></label></div>
     					</div>
                     </div>
                     <div class="col-sm-offset-4 col-sm-4">
     					<div class="subscribeSubmit">
-    						<div class="list"><input type="radio" id="radioLangText1" class="checkList radioLangText" name="radiosLangText" value="fr" checked><label class="labelList" for="radioLangText1" title="<?=__('lang_fr')?>"><?=__('lang_fr')?><span class="led"></span></label></div><br>
-    						<div class="list"><input type="radio" id="radioLangText2" class="checkList radioLangText" name="radiosLangText" value="en"><label class="labelList" for="radioLangText2" title="<?=__('lang_en')?>"><?=__('lang_en')?><span class="led"></span></label></div>
+    						<div class="list"><input type="radio" id="radioLangTextFr" class="checkList radioLangText" name="radiosLangText" value="fr" checked><label class="labelList" for="radioLangTextFr" title="<?=__('lang_fr')?>"><?=__('lang_fr')?><span class="led"></span></label></div><br>
+    						<div class="list"><input type="radio" id="radioLangTextEn" class="checkList radioLangText" name="radiosLangText" value="en"><label class="labelList" for="radioLangTextEn" title="<?=__('lang_en')?>"><?=__('lang_en')?><span class="led"></span></label></div><br>
+                            <div class="list"><input type="radio" id="radioLangTextRo" class="checkList radioLangText" name="radiosLangText" value="ro"><label class="labelList" for="radioLangTextRo" title="<?=__('lang_ro')?>"><?=__('lang_ro')?><span class="led"></span></label></div>
     					</div>
                     </div>
                 </div>   
@@ -409,7 +411,7 @@ echo '<style type="text/css">#home{display:block;}</style>';
                 </div>
             </div>
             <input type="hidden" name="subscribeChosenTime" id="subscribeChosenTime" value="66"><!-- par défaut, utc 1 et envoi à 6h -->
-<!--             <input type="hidden" name="langText" id="langText" value="<?=__('language')?>">
+<!--        <input type="hidden" name="langText" id="langText" value="<?=__('language')?>">
             <input type="hidden" name="langReading" id="langReading" value="<?=__('language')?>"> -->
             <input type="hidden" name="subscribeFormButton" id="subscribeFormButton">
             </form>
@@ -670,6 +672,7 @@ echo '<style type="text/css">#home{display:block;}</style>';
                 <input type="hidden" id="hiddenTimeCities" value=<?php echo $_SESSION['time_cities']?>>
                 <input type="hidden" id="hiddenTimeUTC" value=<?php echo $_SESSION['time_utc']?>>
                 <input type="hidden" id="hiddenTimeZone" value=<?php echo $_SESSION['time_zone']?>>
+                <input type="hidden" id="hiddenTimeId" value=<?php echo $_SESSION['time_id']?>>
 
                 <div class="row" style="padding-bottom: 5px;">
                     <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" align="left"><?=__('subscribe_reading_lang')?></div>
@@ -724,7 +727,7 @@ echo '<style type="text/css">#home{display:block;}</style>';
                                     echo "</select></div></div></li>"; //pour premier passage, pas besoin de fermer le select et le li
                                 }                               
                                 if($previous_zone != $row['time_zone']) echo "</ul><ul class='list-group'><li id='".$row['time_zone']."' class='list-expl'>".__('world_map_table')."<br><br></li><li id='".$row['time_zone']."' class='list-group-item list-header'><div class='row'><div class='col-lg-2'>".__('world_map_timezone')."</div><div class='col-lg-8'>".__('world_map_cities')."</div><div class='col-lg-2'>".__('world_map_time');
-                                echo "<li id='".$row['time_zone']."' class='list-group-item list-utc'><div class='row'><div class='col-lg-2'>UTC : ".$row['time_utc']."</div><div class='col-lg-8'>".$row['time_cities']."</div><div class='col-lg-2'><select class='form-control select-utc' data-utc=".$row['time_utc']."><option></option>";
+                                echo "<li id='".$row['time_zone']."' class='list-group-item list-utc'><div class='row'><div class='col-lg-2'>UTC : ".$row['time_utc']."</div><div class='col-lg-8'>".$row['time_cities']."</div><div class='col-lg-2'><select class='form-control account-select-utc' data-utc=".$row['time_utc']."><option></option>";
                             }
                             $arrClassement[$row['sending_id']] = $row['sending_displayed'];
                             $previous_utc = $row['time_utc'];
@@ -862,7 +865,7 @@ if (!empty($_POST)) {
     } //fin form d'inscription
 
     elseif(isset($_POST['accountFormButton'])) { //form de modification de données
-        //print_r($_POST);
+        print_r($_POST);
         //$fieldsImmediateChange = "";
         //$fieldsDelayedChange = "";
         //$jours_reception = "";
@@ -952,7 +955,7 @@ if (!empty($_POST)) {
                 case "radiosAccountLangText":
                     $radiosAccountLangText = $value;
                     break;
-                case "accountChosenTime":
+                case "hiddenTimeId":
                     $accountChosenTime = $value;
                     break;               
             }
@@ -997,6 +1000,13 @@ if (!empty($_POST)) {
             $user_day_7 = 0;
             echo "<script>$('#hiddenAccount7').val(0);</script>";
         }
+
+        $queryChange = 'UPDATE user SET user_first_name = "'.$user_first_name.'", user_mail = "'.$user_mail.'", user_daily_comment = '.$user_daily_comment.', user_cycle_first_day = '.$user_cycle_first_day.', user_day_1 = '.$user_day_1.', user_day_2 = '.$user_day_2.', user_day_3 = '.$user_day_3.', user_day_4 = '.$user_day_4.', user_day_5 = '.$user_day_5.', user_day_6 = '.$user_day_6.', user_day_7 = '.$user_day_7.', user_reading_param = "'.$radiosAccountLangReading.'", user_daily_comment_param = "'.$radiosAccountLangText.'", user_sending_id = '.$accountChosenTime.'  WHERE user_id = '.$user_id;
+        //echo "<br>query : ".$queryChange;
+        $result = mysqli_query($mysqli, $queryChange);
+        if(!$result) $successImmediateChange = -1;
+        else $successImmediateChange = 1;
+        //echo "<br>result : ".$result;
 
         // if($etatImmediateChange == 1)
         // {

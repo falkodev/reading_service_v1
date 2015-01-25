@@ -47,7 +47,7 @@ jQuery(document).ready(function($) {
             'onClick' : function(e){
                 //var id = e.attr("class");
                 //alert(id);
-                $(".select-utc").find('option').removeAttr("selected"); //annulation sélection utc
+                $(".account-select-utc").find('option').removeAttr("selected"); //annulation sélection utc
                 //$('#select-phrase').empty();
             },
             // 'onLoad' : function(e){
@@ -814,6 +814,17 @@ jQuery(document).ready(function($) {
 		window.location.replace("../" + linkLang);
 	});
 
+    $('.account-select-utc').change(function() {
+        alert("change");
+        $('.list-header').hide();
+        $('.list-utc').hide();
+        $('.list-expl').hide();
+        $('#hiddenTimeId').val(this.value);
+        $('#tipAccount').hide();
+        if(lang == 'fr') $('#account-select-phrase').text('Vous avez sélectionné de recevoir votre email à ' + $('select').children(':selected').text() + "h chaque jour pour le fuseau horaire UTC " + $(this).data('utc'));
+        else  $('#account-select-phrase').text('You have chosen to receive your email everyday at ' + $('select').children(':selected').text() + ".00 according to your timezone");
+    });
+
     $('.select-utc').change(function() {
         $('.list-header').hide();
         $('.list-utc').hide();
@@ -823,6 +834,8 @@ jQuery(document).ready(function($) {
         if(lang == 'fr') $('#select-phrase').text('Vous avez sélectionné de recevoir votre email à ' + $('select').children(':selected').text() + "h chaque jour pour le fuseau horaire UTC " + $(this).data('utc'));
         else  $('#select-phrase').text('You have chosen to receive your email everyday at ' + $('select').children(':selected').text() + ".00 according to your timezone");
     });
+
+
 	
 	$(".questionTitle").click(function() {
 		var str = $(this).attr('id');

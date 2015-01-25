@@ -5,7 +5,7 @@ include("../../app/utils.php");
 if (isset($_POST['loginInput']) && isset($_POST['pwdInput'])){
     $query = 'SELECT user_id, user_password, user_cycle_first_day, '
     .'user_day_1, user_day_2, user_day_3, user_day_4, user_day_5, user_day_6, user_day_7, user_daily_comment, user_first_name, '
-    .'user_reading_param, user_daily_comment_param, sending_displayed, time_cities, time_utc, time_zone '
+    .'user_reading_param, user_daily_comment_param, sending_displayed, time_cities, time_utc, time_zone, user_sending_id '
     .'FROM user '
     .'LEFT JOIN sending_time ON user.user_sending_id = sending_time.sending_id '
     .'LEFT JOIN timezone ON sending_time.timezone_id = timezone.time_id '
@@ -36,8 +36,9 @@ if (isset($_POST['loginInput']) && isset($_POST['pwdInput'])){
             $_SESSION['time_cities'] = $row[15];
             $_SESSION['time_utc'] = $row[16];
             $_SESSION['time_zone'] = $row[17];
+            $_SESSION['time_id'] = $row[18];
             $_SESSION['email'] = $_POST['loginInput'];  
-            
+
 			//recuperation de la derniere ligne de modif decalée (s'il en existe au moins une)
    //          $query = 'SELECT mod_cycle_first_day,mod_day_1,mod_day_2,mod_day_3,mod_day_4,mod_day_5,mod_day_6,mod_day_7 from modification where user_id = '.$_SESSION['id'].' order by mod_id desc';
    //          $result = mysqli_query($mysqli, $query);
