@@ -27,8 +27,8 @@ jQuery(document).ready(function($) {
         $('#map-continents').cssMap({
             'size' : size,
             'onClick' : function(e){
-                //var id = e.attr("class");
-                //alert(id);
+                // var id = e.attr("class");
+                // alert(id);                
                 $(".select-utc").find('option').removeAttr("selected"); //annulation sélection utc
                 //$('#select-phrase').empty();
             },
@@ -45,8 +45,12 @@ jQuery(document).ready(function($) {
         $('#account-map-continents').cssMap({
             'size' : size,
             'onClick' : function(e){
-                //var id = e.attr("class");
-                //alert(id);
+                var zone = e.children('a').attr('id');
+                var len = zone.length - 3;
+                zone = zone.substr(0, len);
+                alert("zone : " + zone);
+
+                $('#hiddenTimeZone').val(zone);
                 $(".account-select-utc").find('option').removeAttr("selected"); //annulation sélection utc
                 //$('#select-phrase').empty();
             },
@@ -599,10 +603,18 @@ jQuery(document).ready(function($) {
         $('#accountForm').submit();
     });
 
-    $("#backAccountBtn").click(function()
+    $("#backToAccountFirstBtn").click(function()
     {
         $("#accountFirst").show();
         $("#accountSecond").hide();
+        $('#accountThird').hide();
+        return false;
+    });
+
+    $("#backToAccountSecondBtn").click(function()
+    {
+        $("#accountFirst").hide();
+        $("#accountSecond").show();
         $('#accountThird').hide();
         return false;
     });
@@ -814,17 +826,6 @@ jQuery(document).ready(function($) {
 		window.location.replace("../" + linkLang);
 	});
 
-    $('.account-select-utc').change(function() {
-        alert("change");
-        $('.list-header').hide();
-        $('.list-utc').hide();
-        $('.list-expl').hide();
-        $('#hiddenTimeId').val(this.value);
-        $('#tipAccount').hide();
-        if(lang == 'fr') $('#account-select-phrase').text('Vous avez sélectionné de recevoir votre email à ' + $('select').children(':selected').text() + "h chaque jour pour le fuseau horaire UTC " + $(this).data('utc'));
-        else  $('#account-select-phrase').text('You have chosen to receive your email everyday at ' + $('select').children(':selected').text() + ".00 according to your timezone");
-    });
-
     $('.select-utc').change(function() {
         $('.list-header').hide();
         $('.list-utc').hide();
@@ -835,7 +836,15 @@ jQuery(document).ready(function($) {
         else  $('#select-phrase').text('You have chosen to receive your email everyday at ' + $('select').children(':selected').text() + ".00 according to your timezone");
     });
 
-
+    $('.account-select-utc').change(function() {
+        $('.list-header').hide();
+        $('.list-utc').hide();
+        $('.list-expl').hide();
+        $('#hiddenTimeId').val(this.value);
+        $('#tipAccount').hide();
+        if(lang == 'fr') $('#account-select-phrase').text('Vous avez sélectionné de recevoir votre email à ' + $('select').children(':selected').text() + "h chaque jour pour le fuseau horaire UTC " + $(this).data('utc'));
+        else  $('#account-select-phrase').text('You have chosen to receive your email everyday at ' + $('select').children(':selected').text() + ".00 according to your timezone");
+    });
 	
 	$(".questionTitle").click(function() {
 		var str = $(this).attr('id');

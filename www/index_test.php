@@ -659,7 +659,7 @@ echo '<style type="text/css">#home{display:block;}</style>';
 
                 <br><div id="formAccountValidate" class="validate"></div><br>
                 
-                <button id="backAccountBtn" class="btn btn-lg subscribeBack btn-inverse"><?=__('btn_previous')?></button>
+                <button id="backToAccountFirstBtn" class="btn btn-lg subscribeBack btn-inverse"><?=__('btn_previous')?></button>
                 <button id="accountSecondBtn" class="btn btn-lg subscribeSubmit btn-default"><?=__('btn_last')?></button>
                 <!-- <input type="submit" id="accountSecondBtn" name="accountSecondBtn" class="btn btn-lg subscribeSubmit btn-default" value="<?=__('btn_save')?>" disabled/> -->
             </div>
@@ -668,11 +668,11 @@ echo '<style type="text/css">#home{display:block;}</style>';
             <div class="col-sm-8 col-sm-offset-2 text-center" id="accountThird">
                 <input type="hidden" id="hiddenReadingLang" value=<?php echo $_SESSION['readingLang']?>>
                 <input type="hidden" id="hiddenCommentLang" value=<?php echo $_SESSION['commentLang']?>>
-                <input type="hidden" id="hiddenTimeDisplayed" value=<?php echo $_SESSION['time_displayed']?>>
-                <input type="hidden" id="hiddenTimeCities" value=<?php echo $_SESSION['time_cities']?>>
-                <input type="hidden" id="hiddenTimeUTC" value=<?php echo $_SESSION['time_utc']?>>
-                <input type="hidden" id="hiddenTimeZone" value=<?php echo $_SESSION['time_zone']?>>
-                <input type="hidden" id="hiddenTimeId" value=<?php echo $_SESSION['time_id']?>>
+                <input type="hidden" id="hiddenTimeDisplayed" value=<?php echo $_SESSION['time_displayed']?> name="accountTimeDisplayed">
+                <input type="hidden" id="hiddenTimeCities" value=<?php echo $_SESSION['time_cities']?> name="accountTimeCities">
+                <input type="hidden" id="hiddenTimeUTC" value=<?php echo $_SESSION['time_utc']?> name="accountTimeUTC">
+                <input type="hidden" id="hiddenTimeZone" value=<?php echo $_SESSION['time_zone']?> name="accountTimeZone">
+                <input type="hidden" id="hiddenTimeId" value=<?php echo $_SESSION['time_id']?> name="accountTimeId">
 
                 <div class="row" style="padding-bottom: 5px;">
                     <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" align="left"><?=__('subscribe_reading_lang')?></div>
@@ -865,7 +865,7 @@ if (!empty($_POST)) {
     } //fin form d'inscription
 
     elseif(isset($_POST['accountFormButton'])) { //form de modification de données
-        print_r($_POST);
+        //print_r($_POST);
         //$fieldsImmediateChange = "";
         //$fieldsDelayedChange = "";
         //$jours_reception = "";
@@ -955,9 +955,22 @@ if (!empty($_POST)) {
                 case "radiosAccountLangText":
                     $radiosAccountLangText = $value;
                     break;
-                case "hiddenTimeId":
+                case "accountTimeId":
                     $accountChosenTime = $value;
-                    break;               
+                    echo "<script>$('#hiddenTimeId').val($accountChosenTime);</script>";
+                    break;
+                // case "accountTimeDisplayed":
+                //     echo "<script>$('#hiddenTimeDisplayed').val($value);</script>";
+                //     break; 
+                // case "accountTimeCities":
+                //     echo "<script>$('#hiddenTimeCities').val($value);</script>";
+                //     break; 
+                // case "accountTimeUTC":
+                //     echo "<script>$('#hiddenTimeUTC').val($value);</script>";
+                //     break; 
+                // case "accountTimeZone":
+                //     echo "<script>$('#hiddenTimeZone').val($value);</script>";
+                //     break;               
             }
         }
         if(!isset($_POST['toggleAccountDailyText']))
@@ -1002,11 +1015,11 @@ if (!empty($_POST)) {
         }
 
         $queryChange = 'UPDATE user SET user_first_name = "'.$user_first_name.'", user_mail = "'.$user_mail.'", user_daily_comment = '.$user_daily_comment.', user_cycle_first_day = '.$user_cycle_first_day.', user_day_1 = '.$user_day_1.', user_day_2 = '.$user_day_2.', user_day_3 = '.$user_day_3.', user_day_4 = '.$user_day_4.', user_day_5 = '.$user_day_5.', user_day_6 = '.$user_day_6.', user_day_7 = '.$user_day_7.', user_reading_param = "'.$radiosAccountLangReading.'", user_daily_comment_param = "'.$radiosAccountLangText.'", user_sending_id = '.$accountChosenTime.'  WHERE user_id = '.$user_id;
-        //echo "<br>query : ".$queryChange;
+        // echo "<br>query : ".$queryChange;
         $result = mysqli_query($mysqli, $queryChange);
         if(!$result) $successImmediateChange = -1;
         else $successImmediateChange = 1;
-        //echo "<br>result : ".$result;
+        // echo "<br>result : ".$result;
 
         // if($etatImmediateChange == 1)
         // {
