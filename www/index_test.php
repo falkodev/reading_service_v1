@@ -14,8 +14,10 @@ $tab_lang = include('../app/lang/fr.php');
 /*$uri = $_SERVER['REQUEST_URI'];
 //echo "<script>alert('uri: $uri');</script>";
 
-//router
+//router*/
 $menu = "home";
+//echo "<script>alert('menu: $menu');</script>";
+/*
 if($uri == '/' || $uri == '' || $uri == '/index.php') {$tab_lang=getLang();}
 else if($uri == '/fr/' || $uri == '/fr') $tab_lang = include('../app/lang/fr.php');
 else if($uri == '/en/' || $uri == '/en') $tab_lang = include('../app/lang/en.php');
@@ -100,22 +102,23 @@ echo '<style type="text/css">#home{display:block;}</style>';
          $('#messageConfirm').slideDown(400);
     }
         
-    function showAccount()
-    {
-        //console.log("entree dans showAccount()");
-        $('.section:visible').hide();
-        $('a', '.mainmenu').removeClass( 'active' );
-        $('#account').addClass( 'active' );
-        $('#account').show();
-        $('#accountFirst').show();
-        $('#accountSecond').hide();
-        $('#messageConfirm').hide();
-        $('#messageAccountConfirm').hide();
-        $('#menuLogin').attr('href', '#account');
-        $('ul.displayNone').css('display','block');
-        /*$('#accountId').val(accountId);
-        console.log("accountId:" + $('#accountId').val());*/
-    }
+    // function showAccount()
+    // {
+    //     //console.log("entree dans showAccount()");
+    //     $('.section:visible').hide();
+    //     $('a', '.mainmenu').removeClass( 'active' );
+    //     $('#account').addClass( 'active' );
+    //     $('#account').show();
+    //     $('#accountFirst').show();
+    //     $('#accountSecond').hide();
+    //     $('#accountThird').hide();
+    //     $('#messageConfirm').hide();
+    //     $('#messageAccountConfirm').hide();
+    //     $('#menuLogin').attr('href', '#account');
+    //     $('ul.displayNone').css('display','block');
+    //     /*$('#accountId').val(accountId);
+    //     console.log("accountId:" + $('#accountId').val());*/
+    // }
         
     function showAccountChangeConfirm(successImmediate, successDelayed)
     {    
@@ -125,6 +128,7 @@ echo '<style type="text/css">#home{display:block;}</style>';
         $('#account').show();
         $('#accountFirst').hide();
         $('#accountSecond').hide();
+        $('#accountThird').hide();
         $('#accountChangeConfirm').show();
         $('#messageAccountConfirm').hide();
         $('#menuLogin').attr('href', '#account');
@@ -669,7 +673,7 @@ echo '<style type="text/css">#home{display:block;}</style>';
                 <input type="hidden" id="hiddenReadingLang" value=<?php echo $_SESSION['readingLang']?>>
                 <input type="hidden" id="hiddenCommentLang" value=<?php echo $_SESSION['commentLang']?>>
                 <input type="hidden" id="hiddenTimeDisplayed" value=<?php echo $_SESSION['time_displayed']?> name="accountTimeDisplayed">
-                <input type="hidden" id="hiddenTimeCities" value=<?php echo $_SESSION['time_cities']?> name="accountTimeCities">
+                <input type="hidden" id="hiddenTimeCities" value="" name="accountTimeCities"> <!-- value remplie en js car pbl de virgules avec les villes -->
                 <input type="hidden" id="hiddenTimeUTC" value=<?php echo $_SESSION['time_utc']?> name="accountTimeUTC">
                 <input type="hidden" id="hiddenTimeZone" value=<?php echo $_SESSION['time_zone']?> name="accountTimeZone">
                 <input type="hidden" id="hiddenTimeId" value=<?php echo $_SESSION['time_id']?> name="accountTimeId">
@@ -865,7 +869,7 @@ if (!empty($_POST)) {
     } //fin form d'inscription
 
     elseif(isset($_POST['accountFormButton'])) { //form de modification de données
-        //print_r($_POST);
+        print_r($_POST);
         //$fieldsImmediateChange = "";
         //$fieldsDelayedChange = "";
         //$jours_reception = "";
@@ -943,34 +947,36 @@ if (!empty($_POST)) {
                     $user_day_7 = $value;
                     echo "<script>$('#hiddenAccount7').val(1);</script>";
                     break;
-                case "accountImmediateChange":
-                    $etatImmediateChange = $value;
-                    break;
-                case "accountDelayedChange":
-                    $etatDelayedChange = $value;
-                    break;     
+                // case "accountImmediateChange":
+                //     $etatImmediateChange = $value;
+                //     break;
+                // case "accountDelayedChange":
+                //     $etatDelayedChange = $value;
+                //     break;     
                 case "radiosAccountLangReading":
                     $radiosAccountLangReading = $value;
+                    echo "<script>$('#hiddenReadingLang').val($radiosAccountLangReading);alert('radiosAccountLangReading => $radiosAccountLangReading ok');</script>";
                     break;
                 case "radiosAccountLangText":
                     $radiosAccountLangText = $value;
+                    echo "<script>$('#hiddenCommentLang').val($radiosAccountLangText);alert('radiosAccountLangText => $radiosAccountLangText ok');</script>";
                     break;
                 case "accountTimeId":
                     $accountChosenTime = $value;
-                    echo "<script>$('#hiddenTimeId').val($accountChosenTime);</script>";
+                    echo "<script>$('#hiddenTimeId').val($accountChosenTime);alert('accountChosenTime => $accountChosenTime ok');</script>";
                     break;
-                // case "accountTimeDisplayed":
-                //     echo "<script>$('#hiddenTimeDisplayed').val($value);</script>";
-                //     break; 
-                // case "accountTimeCities":
-                //     echo "<script>$('#hiddenTimeCities').val($value);</script>";
-                //     break; 
-                // case "accountTimeUTC":
-                //     echo "<script>$('#hiddenTimeUTC').val($value);</script>";
-                //     break; 
-                // case "accountTimeZone":
-                //     echo "<script>$('#hiddenTimeZone').val($value);</script>";
-                //     break;               
+                case "accountTimeDisplayed":
+                    echo "<script>$('#hiddenTimeDisplayed').val($value);alert('accountTimeDisplayed => $value ok');</script>";
+                    break; 
+                case "accountTimeCities":
+                    echo "<script>$('#hiddenTimeCities').val(".$value.");alert('accountTimeCities => ".$value." ok');</script>";
+                    break; 
+                case "accountTimeUTC":
+                    echo "<script>$('#hiddenTimeUTC').val($value);alert('accountTimeUTC => $value ok');</script>";
+                    break; 
+                case "accountTimeZone":
+                    echo "<script>$('#hiddenTimeZone').val($value);alert('accountTimeZone => $value ok');</script>";
+                    break;               
             }
         }
         if(!isset($_POST['toggleAccountDailyText']))
@@ -1094,23 +1100,25 @@ if (!empty($_POST)) {
         echo "<script>emailSent();</script>";
     }
     elseif(isset($_POST['loginInput'])) { //form de login
-        echo "<script>$('#login').fadeOut(section_hide_time, function() {
-                        $('#account').fadeIn(section_show_time);
-                        $('.section:visible').hide();
-                        $('a', '.mainmenu').removeClass('active');
-                        $('#account').addClass('active');
-                        $('#account').show();
-                        $('#accountFirst').show();
-                        $('#accountSecond').hide();
-                        $('#messageConfirm').hide();
-                        $('#messageAccountConfirm').hide();
-                        $('#menuLogin').attr('href', '#account');
-                        $('ul.displayNone').css('display', 'block');
-                        if(".$_POST['msg']." == '2') {
-                        
-                            $('#formDelayedChangeValidate').show();
-                        }                       
-                    });</script>";
+        echo "<script>
+        $('#hiddenTimeCities').val('".$_SESSION['time_cities']."');
+        $('#login').fadeOut(section_hide_time, function() {
+            $('#account').fadeIn(section_show_time);
+            $('.section:visible').hide();
+            $('a', '.mainmenu').removeClass('active');
+            $('#account').addClass('active');
+            $('#account').show();
+            $('#accountFirst').show();
+            $('#accountSecond').hide();
+            $('#accountThird').hide();
+            $('#messageConfirm').hide();
+            $('#messageAccountConfirm').hide();
+            $('#menuLogin').attr('href', '#account');
+            $('ul.displayNone').css('display', 'block');
+            if(".$_POST['msg']." == '2') {
+                $('#formDelayedChangeValidate').show();
+            }         
+        });</script>";
     }
 }
 

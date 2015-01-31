@@ -14,7 +14,7 @@ if (isset($_POST['loginInput']) && isset($_POST['pwdInput'])){
     $result = mysqli_query($mysqli, $query);
     //echo "<br>result : "; print_r($result);
     $row = mysqli_fetch_array($result);
-    //echo "row0 = ".$row[0]."<br>row1 = ".$row[1]."<br>";
+    //echo "row0 = ".$row[0]."<br>row15 = ".$row[15]."<br>";
     if(!$row[0]) echo "-1";//si pas de réponse, c'est que l'adresse mail n'existe pas 
     else {
         if (password_verify($_POST['pwdInput'], $row[1])) { //$row[1] contient le hash du password issu de la BD
