@@ -91,34 +91,16 @@ echo '<style type="text/css">#home{display:block;}</style>';
         $('#messageConfirm').hide();
         if(param == "ok")
         { 
-            if(lang == 'fr') $('#messageConfirm').append('<p style=\'text-align:center\'><br>Merci ' + name + ' pour votre inscription. Vous allez recevoir un email de confirmation dans quelques instants à l\'adresse <b>' + mail + '</b>. Si ce n\'est pas le cas, veuillez vérifier le dossier "Indésirables" (aussi appelé "Spams") de votre boite mail.<br><br>Vous avez choisi de recevoir la lecture de la Bible chaque ' + jours + '. Le mot de passe pour accéder à votre espace personnel sur le site est <b>' + pass + '</b><br><br>Vous pourrez changer tous les paramètres (adresse mail, mot de passe, jours de réception, premier jour de votre semaine de lecture) dans cet espace personnel. En cas de question, n\'hésitez pas utiliser le formulaire de contact.<br><br>Bonne lecture et à bientôt.<br><br>L\'équipe JW Reading</p>');
-            else $('#messageConfirm').append('<p style=\'text-align:center\'><br>Thank you ' + name + ' for your registration. You will receive in a few minutes a confirmation email at <b>' + mail + '</b>. If it is not the case, please check the "Spams" folder in your email account.<br><br>You chose to receive the Bible reading every ' + jours + '. Your password to access your account on the website is <b>' + pass + '</b><br><br>You will be able to modify every parameter (email address, password, reception days, first day of your reading\'s week) in your account. If you have any question, don\'t hesitate to use the contact form.<br><br>Have a nice Bible reading and we hope to see you soon.<br><br>The JW Reading team</p>');
+            if(lang == 'fr') $('#messageConfirm').append('<p style=\'text-align:center\'><br>Merci ' + name + ' pour votre inscription. Vous allez recevoir un email de confirmation dans quelques instants à l\'adresse <b>' + mail + '</b>. Si ce n\'est pas le cas, veuillez vérifier le dossier "Indésirables" (aussi appelé "Spams") de votre boite mail.<br><br>Vous avez choisi de recevoir la lecture de la Bible chaque ' + jours + '. Le mot de passe pour accéder à votre espace personnel sur le site est <b>' + pass + '</b><br><br>Vous pourrez changer tous les paramètres (adresse mail, mot de passe, jours de réception, premier jour de votre semaine de lecture) dans cet espace personnel. En cas de question, n\'hésitez pas utiliser le formulaire de contact.<br><br>Bonne lecture et à bientôt.<br><br>L\'administrateur JW Reading</p>');
+            else $('#messageConfirm').append('<p style=\'text-align:center\'><br>Thank you ' + name + ' for your registration. You will receive in a few minutes a confirmation email at <b>' + mail + '</b>. If it is not the case, please check the "Spams" folder in your email account.<br><br>You chose to receive the Bible reading every ' + jours + '. Your password to access your account on the website is <b>' + pass + '</b><br><br>You will be able to modify every parameter (email address, password, reception days, first day of your reading\'s week) in your account. If you have any question, don\'t hesitate to use the contact form.<br><br>Have a nice Bible reading and we hope to see you soon.<br><br>The JW Reading administrator</p>');
         }
         else if(param == "ko")
         {
-            if(lang == 'fr') $("#messageConfirm").append('<p style="text-align:center"><br>Aïe, problème<br><br>Apparemment, il y a eu un problème d\'enregistrement en base de données lors de votre inscription. Contactez-moi grâce au formulaire de contact pour me le signaler.<br><br> Désolé pour cet incident et à bientôt.<br><br>L\'équipe JW Reading</p>');
-            else $("#messageConfirm").append('<p style="text-align:center"><br>Ouch, problem<br><br>Apparently, there has been a problem during the registration process in the database. Please, inform me about this through the contact form.<br><br> Sorry for this and we hope to see you soon.<br><br>The JW Reading team</p>');
+            if(lang == 'fr') $("#messageConfirm").append('<p style="text-align:center"><br>Aïe, problème<br><br>Apparemment, il y a eu un problème d\'enregistrement en base de données lors de votre inscription. Contactez-moi grâce au formulaire de contact pour me le signaler.<br><br> Désolé pour cet incident.<br><br>L\'administrateur JW Reading</p>');
+            else $("#messageConfirm").append('<p style="text-align:center"><br>Ouch, problem<br><br>Apparently, there has been a problem during the registration process in the database. Please, inform me about this through the contact form.<br><br> Sorry for this incident.<br><br>The JW Reading administrator</p>');
         }
          $('#messageConfirm').slideDown(400);
     }
-        
-    // function showAccount()
-    // {
-    //     //console.log("entree dans showAccount()");
-    //     $('.section:visible').hide();
-    //     $('a', '.mainmenu').removeClass( 'active' );
-    //     $('#account').addClass( 'active' );
-    //     $('#account').show();
-    //     $('#accountFirst').show();
-    //     $('#accountSecond').hide();
-    //     $('#accountThird').hide();
-    //     $('#messageConfirm').hide();
-    //     $('#messageAccountConfirm').hide();
-    //     $('#menuLogin').attr('href', '#account');
-    //     $('ul.displayNone').css('display','block');
-    //     /*$('#accountId').val(accountId);
-    //     console.log("accountId:" + $('#accountId').val());*/
-    // }
         
     function showAccountChangeConfirm(successImmediate, successDelayed)
     {    
@@ -135,9 +117,8 @@ echo '<style type="text/css">#home{display:block;}</style>';
         $('ul.displayNone').css('display','block');
         if(successImmediate == -1 || successDelayed == -1)
         { 
-            if(lang == 'fr') $("#messageAccountConfirm").append('<p style="text-align:center"><br>Aïe, problème<br><br>Apparemment, il y a eu un problème d\'enregistrement en base de données et certaines des modifications n\'ont pas été prises en compte. Contactez-moi grâce au formulaire de contact pour me le signaler.<br><br> Désolé pour cet incident et à bientôt.<br><br>L\'équipe JW Reading</p>');
-            else $("#messageAccountConfirm").append('<p style="text-align:center"><br>Ouch, problem<br><br>Apparently, there has been a problem during the registration process in the database. Please, inform me about this through the contact form.<br><br> Sorry for this and we hope to see you soon.<br><br>The JW Reading team</p>');
-           
+            if(lang == 'fr') $("#messageAccountConfirm").append('<p style="text-align:center"><br>Aïe, problème<br><br>Apparemment, il y a eu un problème d\'enregistrement en base de données et certaines des modifications n\'ont pas été prises en compte. Contactez-moi grâce au formulaire de contact pour me le signaler.<br><br> Désolé pour cet incident.<br><br>L\'administrateur JW Reading</p>');
+            else $("#messageAccountConfirm").append('<p style="text-align:center"><br>Ouch, problem<br><br>Apparently, there has been a problem during the registration process in the database. Please, inform me about this through the contact form.<br><br> Sorry for this incident.<br><br>The JW Reading administrator</p>');
         }
         else
         {
@@ -898,85 +879,80 @@ if (!empty($_POST)) {
         {
             switch($key)
             {
-                case "accountId":
-                    $user_id = ucfirst(strtolower($value));                      
-                    break; 
-                case "nameAccount":
-                    $user_first_name = ucfirst(strtolower($value));  
-                    echo "<script>$('#nameAccount').val('$user_first_name');</script>";                
-                    break;  
-                case "emailAccount":
-                    $user_mail = $value;
-                    echo "<script>$('#emailAccount').val('$user_mail');</script>";
-                    break;                                      
-                case "toggleAccountDailyText":
-                    if($value == "on") { 
-                        $user_daily_comment = 1; 
-                        echo "<script>$('#hiddenAccountDailyComment').val(1);</script>";
-                    }                    
-                    break;
-                case "firstDayRadio":
-                    $user_cycle_first_day = $value;
-                    echo "<script>$('#hiddenAccountFirstDay').val($user_cycle_first_day);</script>";
-                    break;
-                case "toggleAccountDay1":
-                    $user_day_1 = $value;
-                    echo "<script>$('#hiddenAccount1').val(1);</script>";
-                    break;
-                case "toggleAccountDay2":
-                    $user_day_2 = $value;
-                    echo "<script>$('#hiddenAccount2').val(1);</script>";
-                    break;
-                case "toggleAccountDay3":
-                    $user_day_3 = $value;
-                    echo "<script>$('#hiddenAccount3').val(1);</script>";
-                    break;
-                case "toggleAccountDay4":
-                    $user_day_4 = $value;
-                    echo "<script>$('#hiddenAccount4').val(1);</script>";
-                    break;
-                case "toggleAccountDay5":
-                    $user_day_5 = $value;
-                    echo "<script>$('#hiddenAccount5').val(1);</script>";
-                    break;
-                case "toggleAccountDay6":
-                    $user_day_6 = $value;
-                    echo "<script>$('#hiddenAccount6').val(1);</script>";
-                    break;
-                case "toggleAccountDay7":
-                    $user_day_7 = $value;
-                    echo "<script>$('#hiddenAccount7').val(1);</script>";
-                    break;
-                // case "accountImmediateChange":
-                //     $etatImmediateChange = $value;
+                // case "accountId":
+                //     $user_id = ucfirst(strtolower($value));                      
+                //     break; 
+                // case "nameAccount":
+                //     $user_first_name = ucfirst(strtolower($value));  
+                //     echo "<script>$('#nameAccount').val('$user_first_name');</script>";                
+                //     break;  
+                // case "emailAccount":
+                //     $user_mail = $value;
+                //     echo "<script>$('#emailAccount').val('$user_mail');</script>";
+                //     break;                                      
+                // case "toggleAccountDailyText":
+                //     if($value == "on") { 
+                //         $user_daily_comment = 1; 
+                //         echo "<script>$('#hiddenAccountDailyComment').val(1);</script>";
+                //     }                    
                 //     break;
-                // case "accountDelayedChange":
-                //     $etatDelayedChange = $value;
+                // case "firstDayRadio":
+                //     $user_cycle_first_day = $value;
+                //     echo "<script>$('#hiddenAccountFirstDay').val($user_cycle_first_day);</script>";
+                //     break;
+                // case "toggleAccountDay1":
+                //     $user_day_1 = $value;
+                //     echo "<script>$('#hiddenAccount1').val(1);</script>";
+                //     break;
+                // case "toggleAccountDay2":
+                //     $user_day_2 = $value;
+                //     echo "<script>$('#hiddenAccount2').val(1);</script>";
+                //     break;
+                // case "toggleAccountDay3":
+                //     $user_day_3 = $value;
+                //     echo "<script>$('#hiddenAccount3').val(1);</script>";
+                //     break;
+                // case "toggleAccountDay4":
+                //     $user_day_4 = $value;
+                //     echo "<script>$('#hiddenAccount4').val(1);</script>";
+                //     break;
+                // case "toggleAccountDay5":
+                //     $user_day_5 = $value;
+                //     echo "<script>$('#hiddenAccount5').val(1);</script>";
+                //     break;
+                // case "toggleAccountDay6":
+                //     $user_day_6 = $value;
+                //     echo "<script>$('#hiddenAccount6').val(1);</script>";
+                //     break;
+                // case "toggleAccountDay7":
+                //     $user_day_7 = $value;
+                //     echo "<script>$('#hiddenAccount7').val(1);</script>";
                 //     break;     
                 case "radiosAccountLangReading":
                     $radiosAccountLangReading = $value;
-                    echo "<script>$('#hiddenReadingLang').val($radiosAccountLangReading);alert('radiosAccountLangReading => $radiosAccountLangReading ok');</script>";
+                    // echo "<script>$('#hiddenReadingLang').val($radiosAccountLangReading);alert('radiosAccountLangReading => $radiosAccountLangReading ok');</script>";
+                    echo "<script>$('#hiddenReadingLang').val(".$radiosAccountLangReading.");alert('radiosAccountLangReading ok');</script>";
                     break;
-                case "radiosAccountLangText":
-                    $radiosAccountLangText = $value;
-                    echo "<script>$('#hiddenCommentLang').val($radiosAccountLangText);alert('radiosAccountLangText => $radiosAccountLangText ok');</script>";
-                    break;
-                case "accountTimeId":
-                    $accountChosenTime = $value;
-                    echo "<script>$('#hiddenTimeId').val($accountChosenTime);alert('accountChosenTime => $accountChosenTime ok');</script>";
-                    break;
-                case "accountTimeDisplayed":
-                    echo "<script>$('#hiddenTimeDisplayed').val($value);alert('accountTimeDisplayed => $value ok');</script>";
-                    break; 
-                case "accountTimeCities":
-                    echo "<script>$('#hiddenTimeCities').val(".$value.");alert('accountTimeCities => ".$value." ok');</script>";
-                    break; 
-                case "accountTimeUTC":
-                    echo "<script>$('#hiddenTimeUTC').val($value);alert('accountTimeUTC => $value ok');</script>";
-                    break; 
-                case "accountTimeZone":
-                    echo "<script>$('#hiddenTimeZone').val($value);alert('accountTimeZone => $value ok');</script>";
-                    break;               
+                // case "radiosAccountLangText":
+                //     $radiosAccountLangText = $value;
+                //     echo "<script>$('#hiddenCommentLang').val($radiosAccountLangText);alert('radiosAccountLangText => $radiosAccountLangText ok');</script>";
+                //     break;
+                // case "accountTimeId":
+                //     $accountChosenTime = $value;
+                //     echo "<script>$('#hiddenTimeId').val($accountChosenTime);</script>";
+                //     break;
+                // case "accountTimeDisplayed":
+                //     echo "<script>$('#hiddenTimeDisplayed').val($value);</script>";
+                //     break; 
+                // case "accountTimeCities":
+                //     echo "<script>$('#hiddenTimeCities').val(".$value.");</script>";
+                //     break; 
+                // case "accountTimeUTC":
+                //     echo "<script>$('#hiddenTimeUTC').val($value);</script>";
+                //     break; 
+                // case "accountTimeZone":
+                //     echo "<script>$('#hiddenTimeZone').val($value);</script>";
+                //     break;               
             }
         }
         if(!isset($_POST['toggleAccountDailyText']))
@@ -1020,79 +996,13 @@ if (!empty($_POST)) {
             echo "<script>$('#hiddenAccount7').val(0);</script>";
         }
 
-        $queryChange = 'UPDATE user SET user_first_name = "'.$user_first_name.'", user_mail = "'.$user_mail.'", user_daily_comment = '.$user_daily_comment.', user_cycle_first_day = '.$user_cycle_first_day.', user_day_1 = '.$user_day_1.', user_day_2 = '.$user_day_2.', user_day_3 = '.$user_day_3.', user_day_4 = '.$user_day_4.', user_day_5 = '.$user_day_5.', user_day_6 = '.$user_day_6.', user_day_7 = '.$user_day_7.', user_reading_param = "'.$radiosAccountLangReading.'", user_daily_comment_param = "'.$radiosAccountLangText.'", user_sending_id = '.$accountChosenTime.'  WHERE user_id = '.$user_id;
-        // echo "<br>query : ".$queryChange;
-        $result = mysqli_query($mysqli, $queryChange);
-        if(!$result) $successImmediateChange = -1;
-        else $successImmediateChange = 1;
-        // echo "<br>result : ".$result;
-
-        // if($etatImmediateChange == 1)
-        // {
-        //     //$queryImmediateChange = 'UPDATE user SET user_first_name = "'.$user_first_name.'", user_mail = "'.$user_mail.'", user_daily_comment = '.$user_daily_comment.' WHERE user_id = '.$user_id;
-        //     $queryImmediateChange = 'UPDATE user SET user_first_name = "'.$user_first_name.'", user_mail = "'.$user_mail.'", user_daily_comment = '.$user_daily_comment.', user_cycle_first_day = '.$user_cycle_first_day.', user_day_1 = '.$user_day_1.', user_day_2 = '.$user_day_2.', user_day_3 = '.$user_day_3.', user_day_4 = '.$user_day_4.', user_day_5 = '.$user_day_5.', user_day_6 = '.$user_day_6.', user_day_7 = '.$user_day_7.' WHERE user_id = '.$user_id;
-        //     //echo "<br>query : ".$queryImmediateChange;
-        //     $result = mysqli_query($mysqli, $queryImmediateChange);
-        //     if(!$result) $successImmediateChange = -1;
-        //     else $successImmediateChange = 1;
-        //     //echo "<br>result : ".$result;
-        // }
-        // echo "<script type='text/javascript'>alert('fieldsDelayedChange:$fieldsDelayedChange');</script>";
-
-        // if($etatDelayedChange == 1)
-        // { 
-        //     $queryDelayedChange = 'INSERT INTO modification(user_id, mod_cycle_first_day, mod_day_1, mod_day_2, mod_day_3, mod_day_4, mod_day_5, mod_day_6, mod_day_7) VALUES ('.$user_id.', '.$user_cycle_first_day.', '.$user_day_1.', '.$user_day_2.', '.$user_day_3.', '.$user_day_4.', '.$user_day_5.', '.$user_day_6.', '.$user_day_7.')';
-        //     //echo "<br>query : ".$queryDelayedChange;
-        //     $result = mysqli_query($mysqli, $queryDelayedChange);
-        //     //echo "<br>result : ".$result;
-        //     if(!$result) $successDelayedChange = -1;
-        //     else {
-        //         $successDelayedChange = 1; 
-        //         if($user_day_1 == 1) $day1 = __('account_popover_yes'); else $day1 = __('account_popover_no');  
-        //         if($user_day_2 == 1) $day2 = __('account_popover_yes'); else $day2 = __('account_popover_no');
-        //         if($user_day_3 == 1) $day3 = __('account_popover_yes'); else $day3 = __('account_popover_no');
-        //         if($user_day_4 == 1) $day4 = __('account_popover_yes'); else $day4 = __('account_popover_no');
-        //         if($user_day_5 == 1) $day5 = __('account_popover_yes'); else $day5 = __('account_popover_no');
-        //         if($user_day_6 == 1) $day6 = __('account_popover_yes'); else $day6 = __('account_popover_no');
-        //         if($user_day_7 == 1) $day7 = __('account_popover_yes'); else $day7 = __('account_popover_no');
-                
-        //         $day1First = ""; 
-        //         $day2First = "";
-        //         $day3First = "";
-        //         $day4First = "";
-        //         $day5First = "";
-        //         $day6First = "";
-        //         $day7First = "";
-        //         switch($user_cycle_first_day)
-        //         {
-        //             case 1:
-        //                 $day1First = " X";                      
-        //                 break; 
-        //             case 2:
-        //                 $day2First = " X";                      
-        //                 break;
-        //             case 3:
-        //                 $day3First = " X";                      
-        //                 break;
-        //             case 4:
-        //                 $day4First = " X";                      
-        //                 break;
-        //             case 5:
-        //                 $day5First = " X";                      
-        //                 break;
-        //             case 6:
-        //                 $day6First = " X";                      
-        //                 break;
-        //             case 7:
-        //                 $day7First = " X";                      
-        //                 break;
-        //         }
-        //         echo "<script>$('#formDelayedChangeValidate').show();
-        //               $('#helpMod').attr('data-content', '".__('account_popover_content')."<br><br><table class=\'table table-condensed table-responsive\'><tr class=\'active\'><td>".__('account_popover_td_1')."</td><td class=\'text-center\'>".__('account_popover_td_2')."</td><td class=\'text-center`\'>".__('account_popover_td_3')."</td></tr><tr><td> ".__('account_popover_monday')."</td><td class=\'text-center\'>".$day1."</td><td class=\'text-center\'>".$day1First."</td></tr><tr><td> ".__('account_popover_tuesday')."</td><td class=\'text-center\'>".$day2."</td><td class=\'text-center\'>".$day2First."</td></tr><tr><td> ".__('account_popover_wednesday')."</td><td class=\'text-center\'>".$day3."</td><td class=\'text-center\'>".$day3First."</td></tr><tr><td> ".__('account_popover_thursday')."</td><td class=\'text-center\'>".$day4."</td><td class=\'text-center\'>".$day4First."</td></tr><tr><td> ".__('account_popover_friday')."</td><td class=\'text-center\'>".$day5."</td><td class=\'text-center\'>".$day5First."</td></tr><tr><td> ".__('account_popover_saturday')."</td><td class=\'text-center\'>".$day6."</td><td class=\'text-center\'>".$day6First."</td></tr><tr><td> ".__('account_popover_sunday')."</td><td class=\'text-center\'>".$day7."</td><td class=\'text-center\'>".$day7First."</td></tr></table>');
-        //         </script>";
-        //     }
-        // }
-        echo "<script type='text/javascript'>showAccountChangeConfirm($successImmediateChange,$successDelayedChange);</script>";
+        // $queryChange = 'UPDATE user SET user_first_name = "'.$user_first_name.'", user_mail = "'.$user_mail.'", user_daily_comment = '.$user_daily_comment.', user_cycle_first_day = '.$user_cycle_first_day.', user_day_1 = '.$user_day_1.', user_day_2 = '.$user_day_2.', user_day_3 = '.$user_day_3.', user_day_4 = '.$user_day_4.', user_day_5 = '.$user_day_5.', user_day_6 = '.$user_day_6.', user_day_7 = '.$user_day_7.', user_reading_param = "'.$radiosAccountLangReading.'", user_daily_comment_param = "'.$radiosAccountLangText.'", user_sending_id = '.$accountChosenTime.'  WHERE user_id = '.$user_id;
+        // // echo "<br>query : ".$queryChange;
+        // $result = mysqli_query($mysqli, $queryChange);
+        // if(!$result) $successImmediateChange = -1;
+        // else $successImmediateChange = 1;
+        // // echo "<br>result : ".$result;
+        // echo "<script type='text/javascript'>showAccountChangeConfirm($successImmediateChange,$successDelayedChange);</script>";
     }
     
     elseif(isset($_POST['msgContact'])) { //form de contact

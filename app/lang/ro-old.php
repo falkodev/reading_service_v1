@@ -1,7 +1,7 @@
 ﻿<?php 
  return array(  
    'language' => 'fr',
-   'menu_home' => 'Accueil',
+   'menu_home' => 'Pagina principala',
    'menu_info' => 'Fonctionnement',
    'menu_subscribe' => 'Inscription',
    'menu_faq' => 'FAQ',
@@ -54,7 +54,7 @@
    'faq_question_4_title' => 'Que faire en cas de mot de passe perdu ?',
    'faq_question_4_content' => "<a href='http://www.jwreading.com/login'>Dans le menu de connexion</a>, un lien \"Mot de passe oublié\" est présent. Après avoir entré l'adresse mail utilisée pendant votre inscription et cliqué sur le bouton de validation, un nouveau mot de passe sera généré et expédié sur votre adresse email. <br><br>En cas de problème, vous pouvez toujours envoyer un message à l'administrateur JW Reading <a href='http://www.jwreading.com/contact'>avec le formulaire de contact présent sur le site.</a>",
    'faq_question_5_title' => 'Comment me désincrire ?',
-   'faq_question_5_content' => "Si vous désirez supprimer votre compte JW Reading, vous pouvez cliquer dans le lien de désinscription présent en bas de chaque email que vous recevez de jwreading.com. <br><br>Si vous voulez simplement désactiver votre compte sans le supprimer, veuillez envoyer un message à l'administrateur JW Reading <a href='http://www.jwreading.com/contact'>avec le formulaire de contact présent sur le site.</a>",
+   'faq_question_5_content' => "Si désirez supprimer votre compte JW Reading, vous pouvez cliquer dans le lien de désinscription présent en bas de chaque email que vous recevez de jwreading.com. <br><br>Si vous voulez simplement désactiver votre compte sans le supprimer, veuillez envoyer un message à l'administrateur JW Reading <a href='http://www.jwreading.com/contact'>avec le formulaire de contact présent sur le site.</a>",
    'faq_question_6_title' => 'Comment montrer que j\'apprécie le site ?',
    'faq_question_6_content' => "Si vous pensez que ce site est une bonne idée, vous pouvez toujours en remercier l'auteur <a href='http://www.jwreading.com/contact'>avec un petit message d'encouragement ;)</a><br><br> Vous pouvez aussi parler de ce site autour de vous. Ce sera le moyen de le faire connaître et de me pousser à l'améliorer.",
    'faq_question_7_title' => 'Je vois la portion du jour dans mon email quotidien. Pourquoi un lien vers la version online cette portion est-il inclu ?',
