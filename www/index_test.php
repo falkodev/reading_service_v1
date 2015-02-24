@@ -21,6 +21,7 @@ $menu = "home";
 if($uri == '/' || $uri == '' || $uri == '/index.php') {$tab_lang=getLang();}
 else if($uri == '/fr/' || $uri == '/fr') $tab_lang = include('../app/lang/fr.php');
 else if($uri == '/en/' || $uri == '/en') $tab_lang = include('../app/lang/en.php');
+else if($uri == '/ro/' || $uri == '/ro') $tab_lang = include('../app/lang/ro.php');
 else if($uri == '/login' || $uri == '/subscribe' || $uri == '/faq' || $uri == '/contact')
 {
     $tab_lang=getLang();
@@ -34,6 +35,7 @@ else if($uri == '/test')
 {
     header('Location: /index_test.php');exit();
 }
+//else if($uri == '/jwreading/www/') {$tab_lang=getLang();} //special localhost 
 //else header('Location: /error.php');
 else { header("HTTP/1.0 404 Not Found");header('Location: /error.php'.$uri);exit();}
 //fin router*/
@@ -187,8 +189,9 @@ echo '<style type="text/css">#home{display:block;}</style>';
             <div id="leftbar"></div>
              <div class="col-md-10 col-lg-10 col-md-offset-1 col-lg-offset-1 col-sm-8 col-sm-offset-4 text-center contentBox" id="content">
                 <div id="selectedLang">
-                    <?php if(__('language') == 'fr') echo 'FR&nbsp;|&nbsp;<a class="linkLang">EN</a>'; 
-                    else echo '<a class="linkLang">FR</a>&nbsp;|&nbsp;EN';?>
+                    <?php if(__('language') == 'fr') echo 'FR&nbsp;|&nbsp;<a class="linkLang">EN</a>&nbsp;|&nbsp;<a class="linkLang">RO</a>'; 
+                    else if(__('language') == 'ro') echo '<a class="linkLang">FR</a>&nbsp;|&nbsp;<a class="linkLang">EN</a>&nbsp;|&nbsp;RO'; 
+                    else echo '<a class="linkLang">FR</a>&nbsp;|&nbsp;EN&nbsp;|&nbsp;<a class="linkLang">RO</a>';?>
                 </div>
                 <!-- Site Title, your name, HELLO msg, etc. -->
                 <h1 class="title">JW Reading</h1>

@@ -822,7 +822,7 @@ jQuery(document).ready(function($) {
 	
 	$(".linkLang").click(function()
 	{
-		var linkLang = $('.linkLang').text().toLowerCase();
+		var linkLang = $(this).text().toLowerCase();
 		window.location.replace("../" + linkLang);
 	});
 
