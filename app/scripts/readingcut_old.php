@@ -1,5 +1,11 @@
-#!/usr/local/bin/php 
-<?php 
+#!/usr/local/bin/php
+<html>
+    <head>
+        <meta charset="utf-8"> 
+    </head>
+</html>
+<?php
+
 $ancres = "";
 //déterminer quel jour PHP est aujourd'hui
 $jourSemaine = date("N");
@@ -18,7 +24,7 @@ $url = "http://wol.jw.org/wol/dt/".$langUrl.$date; //url du json du texte du jou
 echo "ok url = $url\r\n";
 $xpath = recupJson($url, "1");
 //lecture hebdomadaire normale balise : dernière class='se' trouvée
-$query = $xpath->query("//p[@class='se']/a[not(contains(@class, 'tc'))]"); //exclusion de la classe "tc" sur le lien (pour éviter la révision de l’école du ministère théocratique)
+$query = $xpath->query("//p[@class='se']/a"); 
 foreach ($query as $key => $value) {
 	$liste_lecture = $value->textContent;
 	$link = $value->getAttribute('href');
@@ -33,9 +39,9 @@ $add = array_slice($remove, 2); //cet élément (toujours en position 1) est ret
 $link = implode('/',$add);//ensuite le lien est reconstitué mais sans ce premier élément (/fr/)
 echo "json = $json /// link = $link<br>";
 if($json == 0) //si fichier récupéré est un html
-    $url = "http://wol.jw.org/".$link;
+$url = "http://wol.jw.org/".$link;
 else //sinon si c'est un json
-    $url = "http://wol.jw.org/wol/".$link;//ceci permet de se rendre sur la page contenant toute la lecture de la semaine
+$url = "http://wol.jw.org/wol/".$link;//ceci permet de se rendre sur la page contenant toute la lecture de la semaine
 echo "url = $url\r\n";
 
 $xpath = recupJson($url, "json"); //url du json de la lecture de la semaine
@@ -51,7 +57,7 @@ $lecture = array();
 
 $compteurText = 0;
 $t = $xpath->query('//text()'); //contenu texte de toute la lecture de la semaine
-$vs = $xpath->query('//span[@id]');//versets de la lecture de la semaine
+$vs = $xpath->query('//span');//versets de la lecture de la semaine
 /*$lengthSpan = $vs->length;
 echo "lengthSpan = $lengthSpan<br>";*/
 
@@ -64,9 +70,9 @@ foreach($vs as $keySpan => $versetSpan)
 {
 	//$versetParcours = verset en cours
 	//$versetNext =  prochain verset
-	//$versetParcours = $versetSpan->textContent;
+	$versetParcours = $versetSpan->textContent;
 	$versetNext = $vs->item($keySpan + 1)->textContent;
-	//echo "<br>verset actuel= $versetParcours /// prochain verset = $versetNext ";
+	//echo "verset actuel= $versetParcours /// prochain verset = $versetNext ";
 
 	//$text = portion du verset (plusieurs portions par verset donc obligé de boucler)
 	//bcl sur $compteurText tant que $text != versetNext
@@ -140,7 +146,6 @@ $versets = str_replace("* ;"," ;",$versets);
 $versets = str_replace("+","",$versets);
 $versets = str_replace("*","",$versets);
 $semaine = date("W") + 1;
-if(strlen($semaine) == 1) $semaine = "0".$semaine; //pour les semaines 1 à 9
 
 $nomFichier = $langPath."/".$semaine."dbr11.html";
 echo "<br>nom fichier : $nomFichier<br>";
@@ -324,12 +329,8 @@ function getResearch()
 		$href = $link->getAttribute('href');            
 		//echo "href = $href /// ";
 		$url_index = "http://wol.jw.org".$href;
-
-		//url menant au(x) lien(s) de recherche d'un verset
-		if($lang == '/en') { $xpath_recherche = recupJson($url_index, "1");  }
-		else { $xpath_recherche = recupJson($url_index); } 
+		$xpath_recherche = recupJson($url_index); //url menant au(x) lien(s) de recherche d'un verset
 		//echo "json = $json /// lien de recherche href = $url_index<br>";
-		
 		//recherches : class='sx'                    
 		$query = $xpath_recherche->query("//p[@class='sx']");
 		//print_r($query);
@@ -374,7 +375,7 @@ function getResearch()
                             //on retente donc en html
                             //echo " url_recherche:$url_recherche ";
                             $xpath_verset = recupJson($url_recherche, "html");
-                            $affich = htmlXpath($parDebut, $parFin, $xpath_verset);
+                            htmlXpath($parDebut, $parFin, $xpath_verset);
                             //echo "  ************ 2e passage => HTML  ************ ";
                         }
 						$affich = "";
@@ -387,10 +388,10 @@ function getResearch()
 					}
 					else // sinon c'est un xpath issu d'un html
 					{
-                        $affich = htmlXpath($parDebut, $parFin, $xpath_verset);
+                        htmlXpath($parDebut, $parFin, $xpath_verset);
 					}
 					//echo "<b>$reference :</b> $affich<br>";
-					if($affich != "" && $affich != null) 
+					if($affich != "" | $affich != null) 
 					{
 						$reference = mb_convert_encoding($reference, 'HTML-ENTITIES', "UTF-8");
 						$reference = preg_replace( "#(^(&nbsp;|\s)+|(&nbsp;|\s)+$)#", "", $reference ); //elimination de blancs ou d'espaces éventuels en début de chaine
@@ -456,7 +457,8 @@ function htmlXpath($parDebut, $parFin, $xpath_verset)
             //echo " yes !! ";
         }
     }
-    echo " affichHTML:$affich<br>";
-    return $affich;
-} 
+    echo " affich:$affich<br>";
+}
+
 ?>
+

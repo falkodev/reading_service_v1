@@ -669,16 +669,16 @@ echo '<style type="text/css">#home{display:block;}</style>';
                 <div class="row">
                     <div class="col-sm-4">
                         <div class="subscribeBack">
-                            <div class="list"><input type="radio" class="checkList radioLangReading" name="radiosAccountLangReading" id="radioAccountLangReadingFr" value="fr"><label class="labelList" for="radioAccountLangReadingFr" title="<?=__('lang_fr')?>"><?=__('lang_fr')?><span class="led"></span></label></div><br>
-                            <div class="list"><input type="radio" class="checkList radioLangReading" name="radiosAccountLangReading" id="radioAccountLangReadingEn" value="en"><label class="labelList" for="radioAccountLangReadingEn" title="<?=__('lang_en')?>"><?=__('lang_en')?><span class="led"></span></label></div><br>
-                            <div class="list"><input type="radio" class="checkList radioLangReading" name="radiosAccountLangReading" id="radioAccountLangReadingRo" value="ro"><label class="labelList" for="radioAccountLangReadingRo" title="<?=__('lang_ro')?>"><?=__('lang_ro')?><span class="led"></span></label></div>
+                            <div class="list"><input type="radio" class="checkList radioLangReading" name="radiosAccountLangReading" id="radioAccountLangReadingFr" value="fr"><label class="labelList" data-value="fr" for="radioAccountLangReadingFr" data-element="radiosAccountLangReading" title="<?=__('lang_fr')?>"><?=__('lang_fr')?><span class="led"></span></label></div><br>
+                            <div class="list"><input type="radio" class="checkList radioLangReading" name="radiosAccountLangReading" id="radioAccountLangReadingEn" value="en"><label class="labelList" data-value="en" for="radioAccountLangReadingEn" data-element="radiosAccountLangReading" title="<?=__('lang_en')?>"><?=__('lang_en')?><span class="led"></span></label></div><br>
+                            <div class="list"><input type="radio" class="checkList radioLangReading" name="radiosAccountLangReading" id="radioAccountLangReadingRo" value="ro"><label class="labelList" data-value="ro" for="radioAccountLangReadingRo" data-element="radiosAccountLangReading" title="<?=__('lang_ro')?>"><?=__('lang_ro')?><span class="led"></span></label></div>
                         </div>
                     </div>
                     <div class="col-sm-offset-4 col-sm-4">
                         <div class="subscribeSubmit">
-                            <div class="list"><input type="radio" class="checkList radioLangText" name="radiosAccountLangText" id="radioAccountLangTextFr" value="fr"><label class="labelList" for="radioAccountLangTextFr" title="<?=__('lang_fr')?>"><?=__('lang_fr')?><span class="led"></span></label></div><br>
-                            <div class="list"><input type="radio" class="checkList radioLangText" name="radiosAccountLangText" id="radioAccountLangTextEn" value="en"><label class="labelList" for="radioAccountLangTextEn" title="<?=__('lang_en')?>"><?=__('lang_en')?><span class="led"></span></label></div><br>
-                            <div class="list"><input type="radio" class="checkList radioLangText" name="radiosAccountLangText" id="radioAccountLangTextRo" value="ro"><label class="labelList" for="radioAccountLangTextRo" title="<?=__('lang_ro')?>"><?=__('lang_ro')?><span class="led"></span></label></div>
+                            <div class="list"><input type="radio" class="checkList radioLangText" name="radiosAccountLangText" id="radioAccountLangTextFr" value="fr"><label class="labelList" data-value="fr" for="radioAccountLangTextFr" data-element="radiosAccountLangText" title="<?=__('lang_fr')?>"><?=__('lang_fr')?><span class="led"></span></label></div><br>
+                            <div class="list"><input type="radio" class="checkList radioLangText" name="radiosAccountLangText" id="radioAccountLangTextEn" value="en"><label class="labelList" data-value="en" for="radioAccountLangTextEn" data-element="radiosAccountLangText" title="<?=__('lang_en')?>"><?=__('lang_en')?><span class="led"></span></label></div><br>
+                            <div class="list"><input type="radio" class="checkList radioLangText" name="radiosAccountLangText" id="radioAccountLangTextRo" value="ro"><label class="labelList" data-value="ro" for="radioAccountLangTextRo" data-element="radiosAccountLangText" title="<?=__('lang_ro')?>"><?=__('lang_ro')?><span class="led"></span></label></div>
                         </div>
                     </div>
                 </div>   
@@ -882,80 +882,81 @@ if (!empty($_POST)) {
         {
             switch($key)
             {
-                // case "accountId":
-                //     $user_id = ucfirst(strtolower($value));                      
-                //     break; 
-                // case "nameAccount":
-                //     $user_first_name = ucfirst(strtolower($value));  
-                //     echo "<script>$('#nameAccount').val('$user_first_name');</script>";                
-                //     break;  
-                // case "emailAccount":
-                //     $user_mail = $value;
-                //     echo "<script>$('#emailAccount').val('$user_mail');</script>";
-                //     break;                                      
-                // case "toggleAccountDailyText":
-                //     if($value == "on") { 
-                //         $user_daily_comment = 1; 
-                //         echo "<script>$('#hiddenAccountDailyComment').val(1);</script>";
-                //     }                    
-                //     break;
-                // case "firstDayRadio":
-                //     $user_cycle_first_day = $value;
-                //     echo "<script>$('#hiddenAccountFirstDay').val($user_cycle_first_day);</script>";
-                //     break;
-                // case "toggleAccountDay1":
-                //     $user_day_1 = $value;
-                //     echo "<script>$('#hiddenAccount1').val(1);</script>";
-                //     break;
-                // case "toggleAccountDay2":
-                //     $user_day_2 = $value;
-                //     echo "<script>$('#hiddenAccount2').val(1);</script>";
-                //     break;
-                // case "toggleAccountDay3":
-                //     $user_day_3 = $value;
-                //     echo "<script>$('#hiddenAccount3').val(1);</script>";
-                //     break;
-                // case "toggleAccountDay4":
-                //     $user_day_4 = $value;
-                //     echo "<script>$('#hiddenAccount4').val(1);</script>";
-                //     break;
-                // case "toggleAccountDay5":
-                //     $user_day_5 = $value;
-                //     echo "<script>$('#hiddenAccount5').val(1);</script>";
-                //     break;
-                // case "toggleAccountDay6":
-                //     $user_day_6 = $value;
-                //     echo "<script>$('#hiddenAccount6').val(1);</script>";
-                //     break;
-                // case "toggleAccountDay7":
-                //     $user_day_7 = $value;
-                //     echo "<script>$('#hiddenAccount7').val(1);</script>";
-                //     break;     
+                case "accountId":
+                    $user_id = ucfirst(strtolower($value));                       
+                    break; 
+                case "nameAccount":
+                    $user_first_name = ucfirst(strtolower($value));  
+                    echo "<script>$('#nameAccount').val('$user_first_name');</script>";                
+                    break;  
+                case "emailAccount":
+                    $user_mail = $value;
+                    echo "<script>$('#emailAccount').val('$user_mail');</script>";
+                    break;                                      
+                case "toggleAccountDailyText":
+                    if($value == "on") { 
+                        $user_daily_comment = 1; 
+                        echo "<script>$('#hiddenAccountDailyComment').val(1);</script>";
+                    }                    
+                    break;
+                case "firstDayRadio":
+                    $user_cycle_first_day = $value;
+                    echo "<script>$('#hiddenAccountFirstDay').val($user_cycle_first_day);</script>";
+                    break;
+                case "toggleAccountDay1":
+                    $user_day_1 = $value;
+                    echo "<script>$('#hiddenAccount1').val(1);</script>";
+                    break;
+                case "toggleAccountDay2":
+                    $user_day_2 = $value;
+                    echo "<script>$('#hiddenAccount2').val(1);</script>";
+                    break;
+                case "toggleAccountDay3":
+                    $user_day_3 = $value;
+                    echo "<script>$('#hiddenAccount3').val(1);</script>";
+                    break;
+                case "toggleAccountDay4":
+                    $user_day_4 = $value;
+                    echo "<script>$('#hiddenAccount4').val(1);</script>";
+                    break;
+                case "toggleAccountDay5":
+                    $user_day_5 = $value;
+                    echo "<script>$('#hiddenAccount5').val(1);</script>";
+                    break;
+                case "toggleAccountDay6":
+                    $user_day_6 = $value;
+                    echo "<script>$('#hiddenAccount6').val(1);</script>";
+                    break;
+                case "toggleAccountDay7":
+                    $user_day_7 = $value;
+                    echo "<script>$('#hiddenAccount7').val(1);</script>";
+                    break;     
                 case "radiosAccountLangReading":
                     $radiosAccountLangReading = $value;
                     // echo "<script>$('#hiddenReadingLang').val($radiosAccountLangReading);alert('radiosAccountLangReading => $radiosAccountLangReading ok');</script>";
                     echo "<script>$('#hiddenReadingLang').val(".$radiosAccountLangReading.");alert('radiosAccountLangReading ok');</script>";
                     break;
-                // case "radiosAccountLangText":
-                //     $radiosAccountLangText = $value;
-                //     echo "<script>$('#hiddenCommentLang').val($radiosAccountLangText);alert('radiosAccountLangText => $radiosAccountLangText ok');</script>";
-                //     break;
-                // case "accountTimeId":
-                //     $accountChosenTime = $value;
-                //     echo "<script>$('#hiddenTimeId').val($accountChosenTime);</script>";
-                //     break;
-                // case "accountTimeDisplayed":
-                //     echo "<script>$('#hiddenTimeDisplayed').val($value);</script>";
-                //     break; 
-                // case "accountTimeCities":
-                //     echo "<script>$('#hiddenTimeCities').val(".$value.");</script>";
-                //     break; 
-                // case "accountTimeUTC":
-                //     echo "<script>$('#hiddenTimeUTC').val($value);</script>";
-                //     break; 
-                // case "accountTimeZone":
-                //     echo "<script>$('#hiddenTimeZone').val($value);</script>";
-                //     break;               
+                case "radiosAccountLangText":
+                    $radiosAccountLangText = $value;
+                    echo "<script>$('#hiddenCommentLang').val($radiosAccountLangText);alert('radiosAccountLangText => $radiosAccountLangText ok');</script>";
+                    break;
+                case "accountTimeId":
+                    $accountChosenTime = $value;
+                    echo "<script>$('#hiddenTimeId').val($accountChosenTime);</script>";
+                    break;
+                case "accountTimeDisplayed":
+                    echo "<script>$('#hiddenTimeDisplayed').val($value);</script>";                    
+                    break; 
+                case "accountTimeCities":
+                    echo "<script>$('#hiddenTimeCities').val(".$value.");</script>";
+                    break; 
+                case "accountTimeUTC":
+                    echo "<script>$('#hiddenTimeUTC').val($value);</script>";
+                    break; 
+                case "accountTimeZone":
+                    echo "<script>$('#hiddenTimeZone').val($value);</script>";
+                    echo "<script>$.each(".$value.", function (k, v) { alert('accountTimeZone:' + v); });</script>";
+                    break;               
             }
         }
         if(!isset($_POST['toggleAccountDailyText']))
@@ -999,13 +1000,13 @@ if (!empty($_POST)) {
             echo "<script>$('#hiddenAccount7').val(0);</script>";
         }
 
-        // $queryChange = 'UPDATE user SET user_first_name = "'.$user_first_name.'", user_mail = "'.$user_mail.'", user_daily_comment = '.$user_daily_comment.', user_cycle_first_day = '.$user_cycle_first_day.', user_day_1 = '.$user_day_1.', user_day_2 = '.$user_day_2.', user_day_3 = '.$user_day_3.', user_day_4 = '.$user_day_4.', user_day_5 = '.$user_day_5.', user_day_6 = '.$user_day_6.', user_day_7 = '.$user_day_7.', user_reading_param = "'.$radiosAccountLangReading.'", user_daily_comment_param = "'.$radiosAccountLangText.'", user_sending_id = '.$accountChosenTime.'  WHERE user_id = '.$user_id;
-        // // echo "<br>query : ".$queryChange;
-        // $result = mysqli_query($mysqli, $queryChange);
-        // if(!$result) $successImmediateChange = -1;
-        // else $successImmediateChange = 1;
-        // // echo "<br>result : ".$result;
-        // echo "<script type='text/javascript'>showAccountChangeConfirm($successImmediateChange,$successDelayedChange);</script>";
+        $queryChange = 'UPDATE user SET user_first_name = "'.$user_first_name.'", user_mail = "'.$user_mail.'", user_daily_comment = '.$user_daily_comment.', user_cycle_first_day = '.$user_cycle_first_day.', user_day_1 = '.$user_day_1.', user_day_2 = '.$user_day_2.', user_day_3 = '.$user_day_3.', user_day_4 = '.$user_day_4.', user_day_5 = '.$user_day_5.', user_day_6 = '.$user_day_6.', user_day_7 = '.$user_day_7.', user_reading_param = "'.$radiosAccountLangReading.'", user_daily_comment_param = "'.$radiosAccountLangText.'", user_sending_id = '.$accountChosenTime.'  WHERE user_id = '.$user_id;
+        // echo "<br>query : ".$queryChange;
+        $result = mysqli_query($mysqli, $queryChange);
+        if(!$result) $successImmediateChange = -1;
+        else $successImmediateChange = 1;
+        // echo "<br>result : ".$result;
+        echo "<script type='text/javascript'>showAccountChangeConfirm($successImmediateChange,$successDelayedChange);</script>";
     }
     
     elseif(isset($_POST['msgContact'])) { //form de contact

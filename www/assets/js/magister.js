@@ -48,7 +48,7 @@ jQuery(document).ready(function($) {
                 var zone = e.children('a').attr('id');
                 var len = zone.length - 3;
                 zone = zone.substr(0, len);
-                alert("zone : " + zone);
+                // alert("zone : " + zone);
 
                 $('#hiddenTimeZone').val(zone);
                 $(".account-select-utc").find('option').removeAttr("selected"); //annulation sélection utc
@@ -632,6 +632,15 @@ jQuery(document).ready(function($) {
         $('#messageAccountConfirm').hide();
         $('#menuLogin').attr('href', '#account');
         $('ul.displayNone').css('display', 'block');
+    });
+
+    $(".labelList").click(function(e){ 
+        if($(this).attr("data-element") == "radiosAccountLangReading")  {   
+            $('#hiddenReadingLang').val($(this).attr("data-value"));
+        }
+        else if ($(this).attr("data-element") == "radiosAccountLangText") {
+            $('#hiddenCommentLang').val($(this).attr("data-value"));
+        }
     });
 
     $('.passConfirm').hide();
