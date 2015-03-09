@@ -654,8 +654,8 @@ echo '<style type="text/css">#home{display:block;}</style>';
 
             <!-- 3e ecran du formulaire -->
             <div class="col-sm-8 col-sm-offset-2 text-center" id="accountThird">
-                <input type="hidden" id="hiddenReadingLang" value=<?php echo $_SESSION['readingLang']?>>
-                <input type="hidden" id="hiddenCommentLang" value=<?php echo $_SESSION['commentLang']?>>
+                <input type="hidden" id="hiddenReadingLang" name="hiddenReadingLang" value=<?php echo $_SESSION['readingLang']?>>
+                <input type="hidden" id="hiddenCommentLang" name="hiddenCommentLang" value=<?php echo $_SESSION['commentLang']?>>
                 <input type="hidden" id="hiddenTimeDisplayed" value=<?php echo $_SESSION['time_displayed']?> name="accountTimeDisplayed">
                 <input type="hidden" id="hiddenTimeCities" value="" name="accountTimeCities"> <!-- value remplie en js car pbl de virgules avec les villes -->
                 <input type="hidden" id="hiddenTimeUTC" value=<?php echo $_SESSION['time_utc']?> name="accountTimeUTC">
@@ -714,8 +714,16 @@ echo '<style type="text/css">#home{display:block;}</style>';
                                     $arrClassement = array();
                                     echo "</select></div></div></li>"; //pour premier passage, pas besoin de fermer le select et le li
                                 }                               
-                                if($previous_zone != $row['time_zone']) echo "</ul><ul class='list-group'><li id='".$row['time_zone']."' class='list-expl'>".__('world_map_table')."<br><br></li><li id='".$row['time_zone']."' class='list-group-item list-header'><div class='row'><div class='col-lg-2'>".__('world_map_timezone')."</div><div class='col-lg-8'>".__('world_map_cities')."</div><div class='col-lg-2'>".__('world_map_time');
-                                echo "<li id='".$row['time_zone']."' class='list-group-item list-utc'><div class='row'><div class='col-lg-2'>UTC : ".$row['time_utc']."</div><div class='col-lg-8'>".$row['time_cities']."</div><div class='col-lg-2'><select class='form-control account-select-utc' data-utc=".$row['time_utc']."><option></option>";
+                                if($previous_zone != $row['time_zone']) 
+                                    {
+                                        echo "</ul><ul class='list-group'><li id='".$row['time_zone']."' class='list-expl'>".__('world_map_table')."<br><br></li>".
+                                        "<li id='".$row['time_zone']."' class='list-group-item list-header'><div class='row'><div class='col-lg-2'>".__('world_map_timezone')."</div>".
+                                        "<div class='col-lg-8'>".__('world_map_cities')."</div><div class='col-lg-2'>".__('world_map_time');
+                                    }
+                                echo "<li id='".$row['time_zone']."' class='list-group-item list-utc'>".
+                                "<div class='row'><div class='col-lg-2'>UTC : ".$row['time_utc']."</div>".
+                                "<div class='col-lg-8'>".$row['time_cities']."</div>".
+                                "<div class='col-lg-2'><select class='form-control account-select-utc' data-utc=".$row['time_utc']." data-cities='".$row['time_cities']."' data-zone='".$row['time_zone']."'><option></option>";
                             }
                             $arrClassement[$row['sending_id']] = $row['sending_displayed'];
                             $previous_utc = $row['time_utc'];
@@ -730,7 +738,7 @@ echo '<style type="text/css">#home{display:block;}</style>';
                         <div id="account-select-phrase"></div>
                     </div>
                     <button id="backToAccountSecondBtn" class="btn btn-lg subscribeBack btn-inverse"><?=__('btn_previous')?></button>
-                    <input type="submit" id="accountThirdBtn" name="accountThirdBtn" class="btn btn-lg subscribeSubmit btn-default" value="<?=__('btn_save')?>"/>
+                    <input type="button" id="accountThirdBtn" name="accountThirdBtn" class="btn btn-lg subscribeSubmit btn-default" value="<?=__('btn_save')?>"/>
                 </div>
             </div>
             <input type="hidden" name="accountFormButton" id="accountFormButton">
@@ -931,32 +939,29 @@ if (!empty($_POST)) {
                     $user_day_7 = $value;
                     echo "<script>$('#hiddenAccount7').val(1);</script>";
                     break;     
-                case "radiosAccountLangReading":
+                case "hiddenReadingLang":
                     $radiosAccountLangReading = $value;
-                    // echo "<script>$('#hiddenReadingLang').val($radiosAccountLangReading);alert('radiosAccountLangReading => $radiosAccountLangReading ok');</script>";
-                    echo "<script>$('#hiddenReadingLang').val(".$radiosAccountLangReading.");alert('radiosAccountLangReading ok');</script>";
                     break;
-                case "radiosAccountLangText":
+                case "hiddenCommentLang":
                     $radiosAccountLangText = $value;
-                    echo "<script>$('#hiddenCommentLang').val($radiosAccountLangText);alert('radiosAccountLangText => $radiosAccountLangText ok');</script>";
                     break;
                 case "accountTimeId":
                     $accountChosenTime = $value;
-                    echo "<script>$('#hiddenTimeId').val($accountChosenTime);</script>";
+                    // echo "<script>$('#hiddenTimeId').val($accountChosenTime);</script>";
                     break;
-                case "accountTimeDisplayed":
-                    echo "<script>$('#hiddenTimeDisplayed').val($value);</script>";                    
-                    break; 
-                case "accountTimeCities":
-                    echo "<script>$('#hiddenTimeCities').val(".$value.");</script>";
-                    break; 
-                case "accountTimeUTC":
-                    echo "<script>$('#hiddenTimeUTC').val($value);</script>";
-                    break; 
-                case "accountTimeZone":
-                    echo "<script>$('#hiddenTimeZone').val($value);</script>";
-                    echo "<script>$.each(".$value.", function (k, v) { alert('accountTimeZone:' + v); });</script>";
-                    break;               
+                // case "accountTimeDisplayed":
+                //     echo "<script>$('#hiddenTimeDisplayed').val($value);</script>";                    
+                //     break; 
+                // case "accountTimeCities":
+                //     echo "<script>$('#hiddenTimeCities').val(".$value.");</script>";
+                //     break; 
+                // case "accountTimeUTC":
+                //     echo "<script>$('#hiddenTimeUTC').val($value);</script>";
+                //     break; 
+                // case "accountTimeZone":
+                //     echo "<script>$('#hiddenTimeZone').val($value);</script>";
+                //     echo "<script>$.each(".$value.", function (k, v) { alert('accountTimeZone:' + v); });</script>";
+                //     break;               
             }
         }
         if(!isset($_POST['toggleAccountDailyText']))
@@ -1000,7 +1005,13 @@ if (!empty($_POST)) {
             echo "<script>$('#hiddenAccount7').val(0);</script>";
         }
 
-        $queryChange = 'UPDATE user SET user_first_name = "'.$user_first_name.'", user_mail = "'.$user_mail.'", user_daily_comment = '.$user_daily_comment.', user_cycle_first_day = '.$user_cycle_first_day.', user_day_1 = '.$user_day_1.', user_day_2 = '.$user_day_2.', user_day_3 = '.$user_day_3.', user_day_4 = '.$user_day_4.', user_day_5 = '.$user_day_5.', user_day_6 = '.$user_day_6.', user_day_7 = '.$user_day_7.', user_reading_param = "'.$radiosAccountLangReading.'", user_daily_comment_param = "'.$radiosAccountLangText.'", user_sending_id = '.$accountChosenTime.'  WHERE user_id = '.$user_id;
+        $queryChange = 'UPDATE user SET user_first_name = "'.$user_first_name.'", 
+        user_mail = "'.$user_mail.'", user_daily_comment = '.$user_daily_comment.', 
+        user_cycle_first_day = '.$user_cycle_first_day.', user_day_1 = '.$user_day_1.', 
+        user_day_2 = '.$user_day_2.', user_day_3 = '.$user_day_3.', user_day_4 = '.$user_day_4.', 
+        user_day_5 = '.$user_day_5.', user_day_6 = '.$user_day_6.', user_day_7 = '.$user_day_7.', 
+        user_reading_param = "'.$radiosAccountLangReading.'", user_daily_comment_param = "'.$radiosAccountLangText.'", 
+        user_sending_id = '.$accountChosenTime.'  WHERE user_id = '.$user_id;
         // echo "<br>query : ".$queryChange;
         $result = mysqli_query($mysqli, $queryChange);
         if(!$result) $successImmediateChange = -1;

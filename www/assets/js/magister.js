@@ -592,6 +592,21 @@ jQuery(document).ready(function($) {
         }
     });
 
+    $("#backToAccount").click(function()
+    {
+        $('.section:visible').hide();
+        $('a', '.mainmenu').removeClass('active');
+        $('#account').addClass('active');
+        $('#account').show();
+        $('#accountFirst').show();
+        $('#accountSecond').hide();
+        $('#accountThird').hide();
+        $('#messageConfirm').hide();
+        $('#messageAccountConfirm').hide();
+        $('#menuLogin').attr('href', '#account');
+        $('ul.displayNone').css('display', 'block');
+    });
+
     $("#accountThirdBtn").click(function(e) {
         var p = $("body").css("background-color", "yellow");
         p.hide(3000).show(3000);
@@ -600,7 +615,35 @@ jQuery(document).ready(function($) {
         });
         $('#accountThird').hide();
         $('#loader').show();
-        $('#accountForm').submit();
+        // $('#accountForm').submit();
+        var form=$("#accountForm");
+        $.post('ajax/saveData.php', form.serialize(), function(data) {
+            }).done(function(result) {
+                result = result.trim();
+                $('#accountChangeConfirm').show();
+                $('.section:visible').hide();
+                $('a', '.mainmenu').removeClass( 'active' );
+                $('#account').addClass( 'active' );
+                $('#account').show();
+                $('#accountFirst').hide();
+                $('#accountSecond').hide();
+                $('#accountThird').hide();
+                $('#accountChangeConfirm').show();
+                $('#messageAccountConfirm').hide();
+                $('#menuLogin').attr('href', '#account');
+                $('ul.displayNone').css('display','block');
+                if(result == "OK"){
+                    if(lang == 'fr') $("#messageAccountConfirm").append('<p style="text-align:center"><br>Vos modifications ont bien été enregistrées</p>');
+                    else $("#messageAccountConfirm").append('<p style="text-align:center"><br>Your modifications have been saved</p>');                    
+                }
+                else {
+                    if(lang == 'fr') $("#messageAccountConfirm").append('<p style="text-align:center"><br>Aïe, problème<br><br>Apparemment, il y a eu un problème d\'enregistrement en base de données et certaines des modifications n\'ont pas été prises en compte. Contactez-moi grâce au formulaire de contact pour me le signaler.<br><br> Désolé pour cet incident.<br><br>L\'administrateur JW Reading</p>');
+                    else $("#messageAccountConfirm").append('<p style="text-align:center"><br>Ouch, problem<br><br>Apparently, there has been a problem during the registration process in the database. Please, inform me about this through the contact form.<br><br> Sorry for this incident.<br><br>The JW Reading administrator</p>');
+                }                            
+                if(lang == 'fr') $("#messageAccountConfirm").append('<p style="text-align:center"><br><button id="backToAccount" class="btn btn-lg btn-default">Revenir à mon compte</button></p>');
+                else $("#messageAccountConfirm").append('<p style="text-align:center"><br><button id="backToAccount" class="btn btn-lg btn-default">Go back to my account</button></p>');
+                $('#messageAccountConfirm').slideDown(400);
+            });
     });
 
     $("#backToAccountFirstBtn").click(function()
@@ -617,21 +660,6 @@ jQuery(document).ready(function($) {
         $("#accountSecond").show();
         $('#accountThird').hide();
         return false;
-    });
-
-    $("#backToAccount").click(function()
-    {
-        $('.section:visible').hide();
-        $('a', '.mainmenu').removeClass('active');
-        $('#account').addClass('active');
-        $('#account').show();
-        $('#accountFirst').show();
-        $('#accountSecond').hide();
-        $('#accountThird').hide();
-        $('#messageConfirm').hide();
-        $('#messageAccountConfirm').hide();
-        $('#menuLogin').attr('href', '#account');
-        $('ul.displayNone').css('display', 'block');
     });
 
     $(".labelList").click(function(e){ 
@@ -850,6 +878,10 @@ jQuery(document).ready(function($) {
         $('.list-utc').hide();
         $('.list-expl').hide();
         $('#hiddenTimeId').val(this.value);
+        $('#hiddenTimeDisplayed').val($('select').children(':selected').text());
+        $('#hiddenTimeCities').val($(this).data('cities'));
+        $('#hiddenTimeUTC').val($(this).data('utc'));
+        $('#iddenTimeZone').val($(this).data('zone'));
         $('#tipAccount').hide();
         if(lang == 'fr') $('#account-select-phrase').text('Vous avez sélectionné de recevoir votre email à ' + $('select').children(':selected').text() + "h chaque jour pour le fuseau horaire UTC " + $(this).data('utc'));
         else  $('#account-select-phrase').text('You have chosen to receive your email everyday at ' + $('select').children(':selected').text() + ".00 according to your timezone");
