@@ -144,5 +144,6 @@
    'lang_fr' => 'Français',
    'lang_en' => 'Anglais',
    'lang_ro' => 'Roumain',
+   'loading' => 'Enregistrement en cours',
  )
 ?>

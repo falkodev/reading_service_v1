@@ -144,5 +144,6 @@
    'lang_fr' => 'French',
    'lang_en' => 'English',
    'lang_ro' => 'Romanian',
+   'loading' => 'Saving data',
  )
 ?>

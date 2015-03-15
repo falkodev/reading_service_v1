@@ -533,6 +533,7 @@ echo '<style type="text/css">#home{display:block;}</style>';
     <div class="container">
         <h2 class="text-center title"><?=__('account_title')?></h2>
         <div class="loader" id="loaderAccount">
+            <p><?=__('loading')?></p>
             <img src='assets/images/ajax-loader.gif'>
         </div>
         <div class="row">

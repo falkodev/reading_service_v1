@@ -144,5 +144,6 @@
    'lang_fr' => 'Franceza',
    'lang_en' => 'Engleza',
    'lang_ro' => 'Romana',
+   'loading' => 'Loading',
  )
 ?>
