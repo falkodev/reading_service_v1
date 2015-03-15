@@ -811,3 +811,8 @@ a:hover, a:active { color:#fff; text-decoration: underline; }
 @media (min-width: 767px) {
   .worldmap { left: -100px; }
 }
+
+.loader {
+  text-align:  center;
+  position: relative;
+}

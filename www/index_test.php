@@ -152,9 +152,9 @@ echo '<style type="text/css">#home{display:block;}</style>';
 
 <!-- use "theme-invert" class on bright backgrounds, also try "text-shadows" class -->
 <body class="text-shadows">
-    <section class="section">
-        <div id="loader" style="position: fixed; top:0; left:0; width:100%; height: 100%; background: url('assets/images/ajax-loader.gif') no-repeat center center #505D6E"><h1 class="title text-center">Enregistrement en base de données</h1></div>
-    </section>
+    <!-- <section class="section"> -->
+        <!-- <div id="loader" style="position: fixed; top:0; left:0; width:100%; height: 100%; background: url('assets/images/ajax-loader.gif') no-repeat center center #505D6E"><h1 class="title text-center">Enregistrement en base de données</h1></div> -->        
+    <!-- </section> -->
 <nav class="mainmenu menu">
     <div class="container">
         <div class="dropdown">
@@ -220,6 +220,9 @@ echo '<style type="text/css">#home{display:block;}</style>';
 <!-- Third (Inscription) section -->
 <section class="section" id="subscribe">
     <div class="container">
+        <div class="loader" id="loaderSubscribe">
+            <img src='assets/images/ajax-loader.gif'>
+        </div>
         <h2 class="text-center title"><?=__('subscribe_title')?></h2>
         <div class="row">
             <form action=<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?> method="post" id="subscribeForm">
@@ -529,6 +532,9 @@ echo '<style type="text/css">#home{display:block;}</style>';
 <section class="section" id="account">
     <div class="container">
         <h2 class="text-center title"><?=__('account_title')?></h2>
+        <div class="loader" id="loaderAccount">
+            <img src='assets/images/ajax-loader.gif'>
+        </div>
         <div class="row">
             <form action=<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?> method="post" id="accountForm">
             <!-- 1er ecran du formulaire -->
@@ -737,6 +743,7 @@ echo '<style type="text/css">#home{display:block;}</style>';
                         ?>
                         <div id="account-select-phrase"></div>
                     </div>
+                    <br><div id="timezoneAccountValidate" class="validate"></div><br>
                     <button id="backToAccountSecondBtn" class="btn btn-lg subscribeBack btn-inverse"><?=__('btn_previous')?></button>
                     <input type="button" id="accountThirdBtn" name="accountThirdBtn" class="btn btn-lg subscribeSubmit btn-default" value="<?=__('btn_save')?>"/>
                 </div>
@@ -748,7 +755,7 @@ echo '<style type="text/css">#home{display:block;}</style>';
             </form>
             
             <div class="col-sm-8 col-sm-offset-2 text-center" id="accountChangeConfirm">  
-                <div id="messageAccountConfirm" style="text-align:left"></div>
+                <div id="messageAccountConfirm" style="text-align:center"></div>
             </div>
         </div>
     </div>

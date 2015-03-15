@@ -30,7 +30,7 @@ jQuery(document).ready(function($) {
                 // var id = e.attr("class");
                 // alert(id);                
                 $(".select-utc").find('option').removeAttr("selected"); //annulation sélection utc
-                //$('#select-phrase').empty();
+                //$('#select-phrase').empty();                
             },
             // 'onLoad' : function(e){
             //     $timezone = $('#hiddenTimeZone').val();
@@ -49,9 +49,10 @@ jQuery(document).ready(function($) {
                 var len = zone.length - 3;
                 zone = zone.substr(0, len);
                 // alert("zone : " + zone);
-
+				$('#hiddenTimeDisplayed').val(0);
                 $('#hiddenTimeZone').val(zone);
                 $(".account-select-utc").find('option').removeAttr("selected"); //annulation sélection utc
+
                 //$('#select-phrase').empty();
             },
             // 'onLoad' : function(e){
@@ -64,7 +65,7 @@ jQuery(document).ready(function($) {
     }
 
 	lang = $('html').attr('lang');
-    $('#loader').hide(); //div pour l'animation "loading" après soumission du formulaire
+    $('.loader').hide(); //div pour l'animation "loading" après soumission du formulaire
     if ($("#content").height() <= $(window).height())
     {
         var speed = 1000;
@@ -315,25 +316,9 @@ jQuery(document).ready(function($) {
 			$("#formValidate").slideDown(400);
         }
         else {
-            // var p = $("body").css("background-color", "yellow");
-            // p.hide(3000).show(3000);
-            // p.queue(function() {
-            //     p.css("background-color", "red");
-            // });
-   //          $('#subscribeSecond').hide();
-   //          $('#loader').show();
-   //          $('#subscribeFormButton').val(1);
-   //          $('#subscribeForm').submit();
-   //          $("#subscribeFirst").hide();
-   //          $("#subscribeSecond").hide();
-   //          //$("#subscribeThird").show();
-			// $("#subscribeThird").hide();
-   //          $("#formValidate").empty();
-   //          $("html, body").animate({scrollTop: 0},750);
             $("#subscribeFirst").hide();
             $("#subscribeThird").show();
             $("#subscribeSecond").hide();
-            //$("input[type=radio]").hide();
             $("#formValidate").empty();
             $(".tip").show(); 
             if($("#select-phrase").is(':empty')) { $("#tip2").show(); }
@@ -344,27 +329,19 @@ jQuery(document).ready(function($) {
 	$("#subscribeThirdBtn").click(function(e)
 	{
 		e.preventDefault();
-		// $("input[type=radio][class=radioLangReading]:checked").each(
-		// 	function() {
-		// 		$('#langReading').val($(this).value);
-		// 	});
-		// $("input[type=radio][class=radioLangText]:checked").each(
-		// 	function() {
-		// 		$('#langText').val($(this).value);
-		// });
-		var p = $("body").css("background-color", "yellow");
-		p.hide(3000).show(3000);
-		p.queue(function() {
-			p.css("background-color", "red");
-		});
-		$('#loader').show();
-		$('#subscribeFormButton').val(1);
-		$('#subscribeForm').submit();
-		$("#subscribeFirst").hide();
-		$("#subscribeSecond").hide();
-		$('#subscribeThird').hide();
-		$("#formValidate").empty();
-		$("html, body").animate({scrollTop: 0},750);
+        $("#subscribeFirst").hide();
+        $("#subscribeSecond").hide();
+        $('#subscribeThird').hide();
+        $('ul.displayNone').css('display','block');
+        $('#subscribeFormButton').val(1);
+		$('#loaderSubscribe').show();
+        $("#messageConfirm").show(2000, function() {
+    		$('#subscribeForm').submit();
+    		$("#formValidate").empty();
+            $('#loaderSubscribe').hide();
+    		$("html, body").animate({scrollTop: 0},750);
+        });
+
 	});
 	
 	$(".loginForm").keyup(function(event){
@@ -586,27 +563,9 @@ jQuery(document).ready(function($) {
             $("#formAccountValidate").slideDown(400);
         }
         else {
-            // if (etatImmediateChange == 1) {
-            //     $('#accountImmediateChange').val('1');
-            // }
-            // if (etatDelayedChange == 1) {
-            //     $('#accountDelayedChange').val('1');
-            // }
-
-            // var p = $("body").css("background-color", "yellow");
-            // p.hide(3000).show(3000);
-            // p.queue(function() {
-            //     p.css("background-color", "red");
-            // });
-            // $('#accountSecond').hide();
-            // $('#loader').show();
-            // $('#accountForm').submit();
             $('#accountSecond').hide();
-            
             var timezone = $('#hiddenTimeZone').val(); 
             $('#' + timezone + '-li').parent().addClass('active-region'); 
-            // var classe = $('#' + timezone + '-li').parent().attr('class'); 
-            // alert('timezone:' + timezone + ' /// li parent:' + classe);
             $('#accountThird').show();
         }
     });
@@ -627,42 +586,50 @@ jQuery(document).ready(function($) {
     });
 
     $("#accountThirdBtn").click(function(e) {
-        var p = $("body").css("background-color", "yellow");
-        p.hide(3000).show(3000);
-        p.queue(function() {
-            p.css("background-color", "red");
-        });
-        $('#accountThird').hide();
-        $('#loader').show();
-        // $('#accountForm').submit();
-        var form=$("#accountForm");
-        $.post('ajax/saveData.php', form.serialize(), function(data) {
-            }).done(function(result) {
-                result = result.trim();
-                $('#accountChangeConfirm').show();
-                $('.section:visible').hide();
-                $('a', '.mainmenu').removeClass( 'active' );
-                $('#account').addClass( 'active' );
-                $('#account').show();
-                $('#accountFirst').hide();
-                $('#accountSecond').hide();
-                $('#accountThird').hide();
-                $('#accountChangeConfirm').show();
-                $('#messageAccountConfirm').hide();
-                $('#menuLogin').attr('href', '#account');
-                $('ul.displayNone').css('display','block');
-                if(result == "OK"){
-                    if(lang == 'fr') $("#messageAccountConfirm").append('<p style="text-align:center"><br>Vos modifications ont bien été enregistrées</p>');
-                    else $("#messageAccountConfirm").append('<p style="text-align:center"><br>Your modifications have been saved</p>');                    
-                }
-                else {
-                    if(lang == 'fr') $("#messageAccountConfirm").append('<p style="text-align:center"><br>Aïe, problème<br><br>Apparemment, il y a eu un problème d\'enregistrement en base de données et certaines des modifications n\'ont pas été prises en compte. Contactez-moi grâce au formulaire de contact pour me le signaler.<br><br> Désolé pour cet incident.<br><br>L\'administrateur JW Reading</p>');
-                    else $("#messageAccountConfirm").append('<p style="text-align:center"><br>Ouch, problem<br><br>Apparently, there has been a problem during the registration process in the database. Please, inform me about this through the contact form.<br><br> Sorry for this incident.<br><br>The JW Reading administrator</p>');
-                }                            
-                if(lang == 'fr') $("#messageAccountConfirm").append('<p style="text-align:center"><br><button id="backToAccount" class="btn btn-lg btn-default">Revenir à mon compte</button></p>');
-                else $("#messageAccountConfirm").append('<p style="text-align:center"><br><button id="backToAccount" class="btn btn-lg btn-default">Go back to my account</button></p>');
-                $('#messageAccountConfirm').slideDown(400);
+        e.preventDefault();
+        if($('#hiddenTimeDisplayed').val() != 0) {
+            $('#loaderAccount').show();               
+            $('#accountThird').hide();
+            $("#messageAccountConfirm").show(2000, function() {
+                var form=$("#accountForm");
+                $.post('ajax/saveData.php', form.serialize(), function(data) {
+                    }).done(function(result) {
+                        result = result.trim();
+                        $('#accountChangeConfirm').show();
+                        $('.section:visible').hide();
+                        $('a', '.mainmenu').removeClass( 'active' );
+                        $('#account').addClass( 'active' );
+                        $('#account').show();
+                        $('#accountFirst').hide();
+                        $('#accountSecond').hide();
+                        $('#accountThird').hide();
+                        $('#accountChangeConfirm').show();
+                        $('#messageAccountConfirm').hide();
+                        $('#menuLogin').attr('href', '#account');
+                        $('ul.displayNone').css('display','block');
+                        $("#messageAccountConfirm").empty();
+                        $('#loaderAccount').hide();
+                        if(result == "OK"){
+                            if(lang == 'fr') $("#messageAccountConfirm").append('<p style="text-align:center"><br>Vos modifications ont bien été enregistrées</p>');
+                            else $("#messageAccountConfirm").append('<p style="text-align:center"><br>Your modifications have been saved</p>');                    
+                        }
+                        else {
+                            if(lang == 'fr') $("#messageAccountConfirm").append('<p style="text-align:center"><br>Aïe, problème<br><br>Apparemment, il y a eu un problème d\'enregistrement en base de données et certaines des modifications n\'ont pas été prises en compte. Contactez-moi grâce au formulaire de contact pour me le signaler.<br><br> Désolé pour cet incident.<br><br>L\'administrateur JW Reading</p>');
+                            else $("#messageAccountConfirm").append('<p style="text-align:center"><br>Ouch, problem<br><br>Apparently, there has been a problem during the registration process in the database. Please, inform me about this through the contact form.<br><br> Sorry for this incident.<br><br>The JW Reading administrator</p>');
+                        }                            
+                        if(lang == 'fr') $("#messageAccountConfirm").append('<p style="text-align:center"><br><button id="backToAccount" class="btn btn-lg btn-default">Revenir à mon compte</button></p>');
+                        else $("#messageAccountConfirm").append('<p style="text-align:center"><br><button id="backToAccount" class="btn btn-lg btn-default">Go back to my account</button></p>');
+                        $('#messageAccountConfirm').slideDown(400);
+                    }); 
             });
+        }
+        else
+        {
+            $("#timezoneAccountValidate").hide();
+            if(lang == 'fr') $("#timezoneAccountValidate").append("Merci de choisir un horaire d'envoi dans le tableau des fuseaux&nbsp;&nbsp;");
+            else $("#timezoneAccountValidate").append("Please choose a sending time in the timezones table&nbsp;&nbsp;");
+            $("#timezoneAccountValidate").slideDown(400);
+        }
     });
 
     $("#backToAccountFirstBtn").click(function()
