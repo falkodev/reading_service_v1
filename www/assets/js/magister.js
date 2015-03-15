@@ -533,7 +533,6 @@ jQuery(document).ready(function($) {
                 $("input[type=radio].accountSwitch").click(function() {
                     var id = $(this).attr("id");
                     var lastChar = id.substr(id.length - 1);
-                    console.log("radio" + lastChar);
                     $("#hiddenAccountFirstDay").val(lastChar);
                 });
 
