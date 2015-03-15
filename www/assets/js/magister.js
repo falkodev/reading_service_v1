@@ -530,6 +530,12 @@ jQuery(document).ready(function($) {
                 var firstDay = $("#hiddenAccountFirstDay").val();
                 $('#radioAccount' + firstDay).attr('checked', true);
 
+                $("input[type=radio].accountSwitch").click(function() {
+                    var id = $(this).attr("id");
+                    var lastChar = id.substr(id.length - 1);
+                    console.log("radio" + lastChar);
+                    $("#hiddenAccountFirstDay").val(lastChar);
+                });
 
                 $("input[type=checkbox].accountSwitch").click(function() {
                     $("input[type=checkbox].accountSwitch").each(
@@ -540,11 +546,25 @@ jQuery(document).ready(function($) {
                                 if ($(this).is(":checked"))
                                 {
                                     $("#radioAccount" + lastChar).show();
+                                    if($(this).attr("id")== 'toggleAccountDailyText')
+                                    {
+                                        $('#hiddenAccountDailyComment').val(1);
+                                    }
+                                    else {
+                                        $('#hiddenAccount' + lastChar).val(1);
+                                    }
                                 }
                                 else
                                 {
-                                    $("#radioAccount" + lastChar).hide();
-                                    $("#radioAccount" + lastChar).attr('checked', false);
+                                    if($(this).attr("id")== 'toggleAccountDailyText')
+                                    {
+                                        $('#hiddenAccountDailyComment').val(0);
+                                    }
+                                    else {
+                                        $("#radioAccount" + lastChar).hide();
+                                        $("#radioAccount" + lastChar).attr('checked', false);
+                                        $('#hiddenAccount' + lastChar).val(0);
+                                    }
                                 }
                             });
                 });
@@ -592,7 +612,7 @@ jQuery(document).ready(function($) {
         }
     });
 
-    $("#backToAccount").click(function()
+    $(document).on('click','#backToAccount',function()
     {
         $('.section:visible').hide();
         $('a', '.mainmenu').removeClass('active');
