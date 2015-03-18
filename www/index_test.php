@@ -81,61 +81,6 @@ echo '<style type="text/css">#home{display:block;}</style>';
     
     <script>  
     var lang = $('html').attr('lang');
-    function showSubscribeConfirm(param, name, mail, jours, comment, pass)
-    {    
-        $('.section:visible').hide();
-        $('a', '.mainmenu').removeClass( 'active' );
-        $('#subscribe').addClass( 'active' );
-        $('#subscribe').show();
-        $('#subscribeFirst').hide();
-        $('#subscribeSecond').hide();
-        $('#subscribeConfirm').show();
-        $('#messageConfirm').hide();
-        if(param == "ok")
-        { 
-            if(lang == 'fr') $('#messageConfirm').append('<p style=\'text-align:center\'><br>Merci ' + name + ' pour votre inscription. Vous allez recevoir un email de confirmation dans quelques instants à l\'adresse <b>' + mail + '</b>. Si ce n\'est pas le cas, veuillez vérifier le dossier "Indésirables" (aussi appelé "Spams") de votre boite mail.<br><br>Vous avez choisi de recevoir la lecture de la Bible chaque ' + jours + '. Le mot de passe pour accéder à votre espace personnel sur le site est <b>' + pass + '</b><br><br>Vous pourrez changer tous les paramètres (adresse mail, mot de passe, jours de réception, premier jour de votre semaine de lecture) dans cet espace personnel. En cas de question, n\'hésitez pas utiliser le formulaire de contact.<br><br>Bonne lecture et à bientôt.<br><br>L\'administrateur JW Reading</p>');
-            else $('#messageConfirm').append('<p style=\'text-align:center\'><br>Thank you ' + name + ' for your registration. You will receive in a few minutes a confirmation email at <b>' + mail + '</b>. If it is not the case, please check the "Spams" folder in your email account.<br><br>You chose to receive the Bible reading every ' + jours + '. Your password to access your account on the website is <b>' + pass + '</b><br><br>You will be able to modify every parameter (email address, password, reception days, first day of your reading\'s week) in your account. If you have any question, don\'t hesitate to use the contact form.<br><br>Have a nice Bible reading and we hope to see you soon.<br><br>The JW Reading administrator</p>');
-        }
-        else if(param == "ko")
-        {
-            if(lang == 'fr') $("#messageConfirm").append('<p style="text-align:center"><br>Aïe, problème<br><br>Apparemment, il y a eu un problème d\'enregistrement en base de données lors de votre inscription. Contactez-moi grâce au formulaire de contact pour me le signaler.<br><br> Désolé pour cet incident.<br><br>L\'administrateur JW Reading</p>');
-            else $("#messageConfirm").append('<p style="text-align:center"><br>Ouch, problem<br><br>Apparently, there has been a problem during the registration process in the database. Please, inform me about this through the contact form.<br><br> Sorry for this incident.<br><br>The JW Reading administrator</p>');
-        }
-         $('#messageConfirm').slideDown(400);
-    }
-        
-    function showAccountChangeConfirm(successImmediate, successDelayed)
-    {    
-        $('.section:visible').hide();
-        $('a', '.mainmenu').removeClass( 'active' );
-        $('#account').addClass( 'active' );
-        $('#account').show();
-        $('#accountFirst').hide();
-        $('#accountSecond').hide();
-        $('#accountThird').hide();
-        $('#accountChangeConfirm').show();
-        $('#messageAccountConfirm').hide();
-        $('#menuLogin').attr('href', '#account');
-        $('ul.displayNone').css('display','block');
-        if(successImmediate == -1 || successDelayed == -1)
-        { 
-            if(lang == 'fr') $("#messageAccountConfirm").append('<p style="text-align:center"><br>Aïe, problème<br><br>Apparemment, il y a eu un problème d\'enregistrement en base de données et certaines des modifications n\'ont pas été prises en compte. Contactez-moi grâce au formulaire de contact pour me le signaler.<br><br> Désolé pour cet incident.<br><br>L\'administrateur JW Reading</p>');
-            else $("#messageAccountConfirm").append('<p style="text-align:center"><br>Ouch, problem<br><br>Apparently, there has been a problem during the registration process in the database. Please, inform me about this through the contact form.<br><br> Sorry for this incident.<br><br>The JW Reading administrator</p>');
-        }
-        else
-        {
-            if(lang == 'fr') $("#messageAccountConfirm").append('<p style="text-align:center"><br>Vos modifications ont bien été enregistrées</p>');
-            else $("#messageAccountConfirm").append('<p style="text-align:center"><br>Your modifications have been saved</p>');
-            //console.log('successDelayed:' + successDelayed);
-            if(successDelayed == 1) {
-                if(lang == 'fr') $("#messageAccountConfirm").append('<p style="text-align:center"><br>Les modifications concernant les jours de réception de la lecture seront prises en compte à partir de lundi prochain.</p>');
-                else $("#messageAccountConfirm").append('<p style="text-align:center"><br>The modifications regarding the reading reception days will be active from next Monday.</p>');
-            }
-        }
-        if(lang == 'fr') $("#messageAccountConfirm").append('<p style="text-align:center"><br><button id="backToAccount" class="btn btn-lg btn-default">Revenir à mon compte</button></p>');
-        else $("#messageAccountConfirm").append('<p style="text-align:center"><br><button id="backToAccount" class="btn btn-lg btn-default">Go back to my account</button></p>');
-        $('#messageAccountConfirm').slideDown(400);
-    }    
     
     function emailSent()
     {
@@ -220,10 +165,10 @@ echo '<style type="text/css">#home{display:block;}</style>';
 <!-- Third (Inscription) section -->
 <section class="section" id="subscribe">
     <div class="container">
+        <h2 class="text-center title"><?=__('subscribe_title')?></h2>
         <div class="loader" id="loaderSubscribe">
             <img src='assets/images/ajax-loader.gif'>
         </div>
-        <h2 class="text-center title"><?=__('subscribe_title')?></h2>
         <div class="row">
             <form action=<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?> method="post" id="subscribeForm">
             <!-- 1er ecran du formulaire -->

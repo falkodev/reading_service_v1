@@ -156,6 +156,11 @@ jQuery(document).ready(function($) {
                 $('#menuLogin').attr('href', '#login');
                 $('ul.displayNone').css('display', 'none');
                 $('#login').fadeIn(section_show_time);
+
+                //clean every input
+                $(':input').val('');
+                $('input:radio, input:checkbox').removeAttr('checked').removeAttr('selected');
+
 				$.ajax({
 					type: "POST",
 					url: "ajax/logout.php",
@@ -329,64 +334,60 @@ jQuery(document).ready(function($) {
 	$("#subscribeThirdBtn").click(function(e)
 	{
 		e.preventDefault();
-  //       $("#subscribeFirst").hide();
-  //       $("#subscribeSecond").hide();
-  //       $('#subscribeThird').hide();
-  //       $('ul.displayNone').css('display','block');
-  //       $('#subscribeFormButton').val(1);
-		// $('#loaderSubscribe').show();
-  //       $("#messageConfirm").show(2000, function() {
-  //   		$('#subscribeForm').submit();
-  //   		$("#formValidate").empty();
-  //           $('#loaderSubscribe').hide();
-  //   		$("html, body").animate({scrollTop: 0},750);
-  //       });
 
         if($('#subscribeChosenTime').val() != 0) {
             $('#loaderSubscribe').show();               
             $('#subscribeThird').hide();
             $("#messageConfirm").show(2000, function() {
-                var form=$("#subscribeForm");
-                $.post('ajax/saveData.php', form.serialize(), function(data) {
-                    }).done(function(result) {
-                        result = result.trim();
-                        $('.section:visible').hide();
-                        $('a', '.mainmenu').removeClass( 'active' );
-                        $('#subscribe').addClass( 'active' );
-                        $('#subscribe').show();
-                        $('#subscribeFirst').hide();
-                        $('#subscribeSecond').hide();
-                        $('#subscribeThird').hide();
-                        $('#subscribeConfirm').show();
-                        $('#messageConfirm').hide();
-                        $('#menuLogin').attr('href', '#subscribe');
-                        $('ul.displayNone').css('display','block');
-                        $("#messageConfirm").empty();
-                        $('#loaderSubscribe').hide();
-                        if(result[0] == "OK"){
-                            var name = result[1];
-                            var mail = result[2];
-                            var jours = result[3];
-                            var comment = result[4];
-                            var pass = result[5];
-                            if(lang == 'fr') {
-                                $('#messageConfirm').append('<p style=\'text-align:center\'><br>Merci ' + name + ' pour votre inscription. Vous allez recevoir un email de confirmation dans quelques instants à l\'adresse <b>' + mail + '</b>. Si ce n\'est pas le cas, veuillez vérifier le dossier "Indésirables" (aussi appelé "Spams") de votre boite mail.<br><br>Vous avez choisi de recevoir la lecture de la Bible chaque ' + jours);
-                                if(comment == 1) $('#messageConfirm').append(' ainsi que le texte du jour');
-                                $('#messageConfirm').append('. Le mot de passe pour accéder à votre espace personnel sur le site est <b>' + pass + '</b><br><br>Vous pourrez changer tous les paramètres (adresse mail, mot de passe, jours de réception, premier jour de votre semaine de lecture) dans cet espace personnel. En cas de question, n\'hésitez pas utiliser le formulaire de contact.<br><br>Bonne lecture et à bientôt.<br><br>L\'administrateur JW Reading</p>');
-                            }
-                            else {
-                                $('#messageConfirm').append('<p style=\'text-align:center\'><br>Thank you ' + name + ' for your registration. You will receive in a few minutes a confirmation email at <b>' + mail + '</b>. If it is not the case, please check the "Spams" folder in your email account.<br><br>You chose to receive the Bible reading every ' + jours);
-                                if(comment == 1) $('#messageConfirm').append(' and the daily text');
-                                $('#messageConfirm').append('. Your password to access your account on the website is <b>' + pass + '</b><br><br>You will be able to modify every parameter (email address, password, reception days, first day of your reading\'s week) in your account. If you have any question, don\'t hesitate to use the contact form.<br><br>Have a nice Bible reading and we hope to see you soon.<br><br>The JW Reading administrator</p>');
+                var data=$("#subscribeForm").serializeArray();
+                data.push({name: "lang", value: lang});
+
+                $.ajax({
+                    type: 'POST',
+                    url: 'ajax/saveData.php',
+                    data: $.param(data),
+                    dataType: 'json'})
+                .done(function(result) {
+                    $('.section:visible').hide();
+                    $('a', '.mainmenu').removeClass( 'active' );
+                    $('#subscribe').addClass( 'active' );
+                    $('#subscribe').show();
+                    $('#subscribeFirst').hide();
+                    $('#subscribeSecond').hide();
+                    $('#subscribeThird').hide();
+                    $('#subscribeConfirm').show();
+                    $('#messageConfirm').hide();
+                    $("#messageConfirm").empty();
+                    $('#loaderSubscribe').hide();
+                    if(result[0] == "OK"){
+                        var name = result[1];
+                        var mail = result[2];
+                        var jours = result[3];
+                        var comment = result[4];
+                        var pass = result[5];
+                        if(lang == 'fr') {
+                            $('#messageConfirm').append('<p style=\'text-align:center\'><br>Merci ' + name + ' pour votre inscription. Vous allez recevoir un email de confirmation dans quelques instants à l\'adresse <b>' + mail + '</b>. Si ce n\'est pas le cas, veuillez vérifier le dossier "Indésirables" (aussi appelé "Spams") de votre boite mail.<br><br>Vous avez choisi de recevoir la lecture de la Bible chaque ' + jours +'. Le mot de passe pour accéder à votre espace personnel sur le site est <b>' + pass + '</b><br><br>Vous pourrez changer tous les paramètres (adresse mail, mot de passe, jours de réception, premier jour de votre semaine de lecture) dans cet espace personnel. En cas de question, n\'hésitez pas utiliser le formulaire de contact.<br><br>Bonne lecture et à bientôt.<br><br>L\'administrateur JW Reading</p>');
                         }
                         else {
-                            if(lang == 'fr') $("#messageConfirm").append('<p style="text-align:center"><br>Aïe, problème<br><br>Apparemment, il y a eu un problème d\'enregistrement en base de données lors de votre inscription. Contactez-moi grâce au formulaire de contact pour me le signaler.<br><br> Désolé pour cet incident.<br><br>L\'administrateur JW Reading</p>');
-                            else $("#messageConfirm").append('<p style="text-align:center"><br>Ouch, problem<br><br>Apparently, there has been a problem during the registration process in the database. Please, inform me about this through the contact form.<br><br> Sorry for this incident.<br><br>The JW Reading administrator</p>');
-                        }                            
-                        if(lang == 'fr') $("#messageConfirm").append('<p style="text-align:center"><br><button class="btn btn-lg btn-default">Retour à l\'accueil</button></p>');
-                        else $("#messageConfirm").append('<p style="text-align:center"><br><button id="backToAccount" class="btn btn-lg btn-default">Go back to home page</button></p>');
-                        $('#messageConfirm').slideDown(400);
-                    }); 
+                            $('#messageConfirm').append('<p style=\'text-align:center\'><br>Thank you ' + name + ' for your registration. You will receive in a few minutes a confirmation email at <b>' + mail + '</b>. If it is not the case, please check the "Spams" folder in your email account.<br><br>You chose to receive the Bible reading every ' + jours +'. Your password to access your account on the website is <b>' + pass + '</b><br><br>You will be able to modify every parameter (email address, password, reception days, first day of your reading\'s week) in your account. If you have any question, don\'t hesitate to use the contact form.<br><br>Have a nice Bible reading and we hope to see you soon.<br><br>The JW Reading administrator</p>');
+                        }
+                    }
+                    else {
+                        if(lang == 'fr') $("#messageConfirm").append('<p style="text-align:center"><br>Aïe, problème<br><br>Apparemment, il y a eu un problème d\'enregistrement en base de données lors de votre inscription. Contactez-moi grâce au formulaire de contact pour me le signaler.<br><br> Désolé pour cet incident.<br><br>L\'administrateur JW Reading</p>');
+                        else $("#messageConfirm").append('<p style="text-align:center"><br>Ouch, problem<br><br>Apparently, there has been a problem during the registration process in the database. Please, inform me about this through the contact form.<br><br> Sorry for this incident.<br><br>The JW Reading administrator</p>');
+                    }                            
+                    if(lang == 'fr') $("#messageConfirm").append('<p style="text-align:center"><br><button class="btn btn-lg btn-default">Retour à l\'accueil</button></p>');
+                    else $("#messageConfirm").append('<p style="text-align:center"><br><button id="backToAccount" class="btn btn-lg btn-default">Go back to home page</button></p>');
+                    $('#messageConfirm').slideDown(400);
+                })
+                .fail(function(err,  status, xhr) {
+                    // console.log( "error " + status + " " + xhr.ResponseText);
+                })
+                .always(function() {
+                    //clean every input
+                    $(':input').val('');
+                    $('input:radio, input:checkbox').removeAttr('checked').removeAttr('selected');
+                })
             });
         }
         else

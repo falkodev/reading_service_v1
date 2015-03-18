@@ -44,8 +44,10 @@ if (isset($_POST['accountId'])){ //modification de compte
 }
 else //création d'utilisateur
 {
-	var_dump($_POST);
+	// var_dump($_POST);
 	$jours_reception = "";
+	$lang = $_POST['lang'];
+	$tab_lang = include('../../app/lang/'.$lang.'.php');
 
   	if(isset($_POST['toggleDailyText'])) { $user_daily_comment = 1; }
 	else { $user_daily_comment = 0; }
@@ -107,8 +109,8 @@ else //création d'utilisateur
     else {
         $message_body = __("subscribe_mail_thks").' '.$user_first_name.' '.__("subscribe_mail_content_1").' '.$jours_reception;
         if($user_daily_comment == 1) $message_body .= ' '.__("subscribe_mail_content_2");
-         $message_body .= __("subscribe_mail_content_3").' <b>'.$user_password.'</b>'.__("subscribe_mail_content_4");
-        sendMail($user_mail, __("subscribe_mail_title"), $message_body,__('subscribe_title'), $user_mail, $unsubscribe_hash); 
+        $message_body .= __("subscribe_mail_content_3").' <b>'.$user_password.'</b>'.__("subscribe_mail_content_4");
+        // sendMail($user_mail, __("subscribe_mail_title"), $message_body,__('subscribe_title'), $user_mail, $unsubscribe_hash); 
         $response[] = 'OK';
         $response[] = $user_first_name;
         $response[] = $user_mail;
@@ -117,7 +119,7 @@ else //création d'utilisateur
         $response[] = $user_password;
         // echo '<script type="text/javascript">showSubscribeConfirm("ok", "'.$user_first_name.'", "'.$user_mail.'", "'.$jours_reception.'", "'.$user_daily_comment.'", "'.$user_password.'");</script>';
     }
-    return $response;
+    echo json_encode($response);
 }
 
 

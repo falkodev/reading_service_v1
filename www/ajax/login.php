@@ -39,26 +39,9 @@ if (isset($_POST['loginInput']) && isset($_POST['pwdInput'])){
             $_SESSION['time_id'] = $row[18];
             $_SESSION['email'] = $_POST['loginInput'];  
 
-			//recuperation de la derniere ligne de modif decalée (s'il en existe au moins une)
-   //          $query = 'SELECT mod_cycle_first_day,mod_day_1,mod_day_2,mod_day_3,mod_day_4,mod_day_5,mod_day_6,mod_day_7 from modification where user_id = '.$_SESSION['id'].' order by mod_id desc';
-   //          $result = mysqli_query($mysqli, $query);
-			// $count = mysqli_num_rows($result);
-   //          $row = mysqli_fetch_array($result);
-   //          if($count > 0){ //si le résultat renvoyé est au moins 1, c'est que cet utilisateur a au moins 1 modif décalée en cours 
-			// 	$_SESSION['mod_firstDay'] = $row[0];
-			// 	$_SESSION['mod_day1'] = $row[1];
-			// 	$_SESSION['mod_day2'] = $row[2];
-			// 	$_SESSION['mod_day3'] = $row[3];
-			// 	$_SESSION['mod_day4'] = $row[4];
-			// 	$_SESSION['mod_day5'] = $row[5];
-			// 	$_SESSION['mod_day6'] = $row[6];
-			// 	$_SESSION['mod_day7'] = $row[7];
-   //              echo '2'; //l'état 2 permet la connexion au compte et affichera un message à propos des modif décalées
-			// }
-   //          else 
             echo '1'; //l'état 1 permet la connexion au compte simplement
         } else {
-            //echo "Le mot de passe est invalide.";
+            //mot de passe invalide
             echo '0';
         }
     }
